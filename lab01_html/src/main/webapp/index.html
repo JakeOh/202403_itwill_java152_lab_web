@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+<!-- 
+HTML(Hyper-Text Markup Language):
+  - HTML 요소: 태그(tag), 속성(attribute), 컨텐트(content)
+  - HTML 문법: <태그 속성이름1="값1" 속성이름2="값2">컨텐트</태그>
+               <tag attr1="val1" attr2="val2" />
+  - HTML의 태그 이름들은 대소문자를 구분하지 않지만, 소문자로만 작성하는 것을 권장.
+  - 태그 속성 값을 설정할 때는 큰따옴표("")와 작은 따옴표('')를 모두 사용할 수 있음.
+  - HTML 요소(element)
+    o. block 요소: 
+        자동으로 줄바꿈되는 요소. 다른 요소의 아래쪽에 배치되는 요소.
+        가로(width), 세로(height) 크기를 설정할 수 있는 요소.
+        (예) div, h1, h2, ..., ul, li, form, table, ...
+    o. inline 요소: 
+        자동으로 줄바꿈되지 않는 요소. 다른 요소의 오른쪽에 배치되는 요소.
+        가로, 세로 크기를 설정할 수 없는 요소.
+        (예) span, a, ...
+    o. inline-block 요소: 
+        다른 요소의 오른쪽에 배치되는 요소. 가로, 세로 크기를 설정할 수 있는 요소.
+        (예) img
+-->
+
+<!DOCTYPE html> <!-- DTD(Document Type Declaration): 문서 타입 선언 -->
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Lab01</title>
+    <head> <!-- 웹 페이지의 설정: 인코딩, 타이틀, CSS, JavaScript, ... 포함 -->
+        <meta charset="UTF-8" /> <!-- html 인코딩 설정 -->
+        <title>Lab01</title> <!-- 브라우저 탭 타이틀 -->
     </head>
-    <body>
+    <body> <!-- 브라우저 화면에 보여지는 부분 -->
+        <!-- heading tag: h1 ~ h6. 문서 제목. -->
         <h1>안녕하세요!</h1>
         <h2>Hello!</h2>
         <h3>점심 시간</h3>
+        
+        <!-- anchor: 링크 -->
+        <a href="https://www.naver.com">네이버</a>
+        <br /> <!-- line break: 줄바꿈 -->
+        <a href="https://www.daum.net">다음</a>
+        
     </body>
 </html>
