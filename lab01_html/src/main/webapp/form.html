@@ -25,6 +25,12 @@
           o. 프로토콜://서버이름(IP 주소):포트번호/경로?질의문자열
              (예) https://www.google.com/search?q=qwer
              (예) http://localhost:8080/lab01_html/result.html?keyword=qwer
+          o. 프로토콜: http, https
+          o. 서버 IP 주소를 직접 사용할 수도 있지만, 일반적으로는 DNS에 등록된 도메인 이름 사용.
+          o. 포트 번호 80은 생략 가능.
+          o. 요청 경로(request path)와 질의 문자열(query string)은 ?로 구분.
+          o. 질의 문자열은 "파라미터=값&파라미터=값&..." 형식으로 작성.
+             파라미터와 파라미터는 &로 구분.
         -->
         
         <h2>GET 방식 전송</h2>
@@ -39,6 +45,25 @@
             <input type="text" name="id" />
             <input type="password" name="pwd" />
             <input type="submit" value="로그인" />
+        </form>
+        
+        <h2>여러가지 입력 타입</h2>
+        <form action="result.html"> <!-- method 속성을 생략하면 GET 방식. -->
+            <input type="text" name="id" placeholder="아이디" required />
+            <br />
+            <input type="password" name="pwd" placeholder="비밀번호" />
+            <br />
+            <input type="number" name="age" placeholder="나이" />
+            <br />
+            <input type="email" name="email" placeholder="이메일" />
+            <br />
+            <input type="date" name="birthday" />
+            <br />
+            <input type="datetime-local" name="createdTime" />
+            <br />
+            
+            <input type="submit" value="제출" />
+            <input type="reset" value="취소" />
         </form>
         
     </body>
