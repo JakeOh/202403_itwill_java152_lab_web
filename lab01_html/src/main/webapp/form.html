@@ -62,8 +62,45 @@
             <input type="datetime-local" name="createdTime" />
             <br />
             
-            <input type="submit" value="제출" />
-            <input type="reset" value="취소" />
+            <!-- 라디오버튼 -->
+            <input type="radio" name="ad" value="T" id="radio1" />
+            <label for="radio1">수신 허용</label>
+            <input type="radio" name="ad" value="F" id="radio2" checked />
+            <label for="radio2">수신 거부</label>
+            <br />
+            <input type="radio" name="gender" value="m" id="gender_r1" />
+            <label for="gender_r1">남성</label>
+            <input type="radio" name="gender" value="f" id="gender_r2" />
+            <label for="gender_r2">여성</label>
+            <input type="radio" name="gender" value="u" id ="gender_r3" />
+            <label for="gender_r3">알 수 없음</label>
+            <br />
+            
+            <!-- 체크박스 -->
+            <input type="checkbox" name="hobby" value="1" id="ch1" />
+            <label for="ch1">영화</label>
+            <input type="checkbox" name="hobby" value="2" id="ch2" />
+            <label for="ch2">음악</label>
+            <input type="checkbox" name="hobby" value="3" id="ch3" />
+            <label for="ch3">독서</label>
+            <input type="checkbox" name="hobby" value="4" id="ch4" />
+            <label for="ch4">코딩</label>
+            <br />
+            
+            <!-- 콤보박스, 목록 상자(drop-down list) -->
+            <select name="domain">
+                <option value="naver.com">네이버</option>
+                <option value="kakao.com">카카오</option>
+                <option value="google.com">구글</option>
+            </select>
+            <br />
+            
+            <!-- 여러 줄 입력 상자 -->
+            <textarea rows="5" cols="40" name="memo" placeholder="메모"></textarea>
+            <br />
+            
+            <input type="submit" value="제출" /> <!-- form의 action 속성에 설정된 페이지로 요청을 보냄. -->
+            <input type="reset" value="취소" /> <!-- 모든 입력 필드의 값들을 지움. -->
         </form>
         
     </body>
