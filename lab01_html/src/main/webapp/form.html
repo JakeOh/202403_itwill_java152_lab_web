@@ -9,5 +9,37 @@
         
         <h1>폼 양식</h1>
         
+        <!--  
+        클라이언트(브라우저, 앱)에서 사용자의 입력을 받아서, 입력 내용을 서버로 전송하는 방법:
+        1. GET 방식:
+           클라이언트가 서버로 보내는 양식(form) 데이터를 요청 주소(URL)의 
+           질의 문자열(query string)에 포함시켜서 전송하는 방식.
+           (예) 검색어 전송.
+        2. POST 방식:
+           클라이언트가 서버로 보내는 양식 데이터를 요청 주소에 노출시키지 않고,
+           요청 패킷의 몸통(body)에 포함시켜서 전송하는 방식.
+           (예) 로그인(아이디, 비밀번호 전송).
+        3. form의 기본(default) 전송 방식(method)은 GET.
+        
+        URL 형식:
+          o. 프로토콜://서버이름(IP 주소):포트번호/경로?질의문자열
+             (예) https://www.google.com/search?q=qwer
+             (예) http://localhost:8080/lab01_html/result.html?keyword=qwer
+        -->
+        
+        <h2>GET 방식 전송</h2>
+        <form method="get" action="result.html">
+            <!-- method: 전송 방식. action: 이동할 서버 요청 페이지 주소(URL) -->
+            <input type="text" name="keyword" />
+            <input type="submit" value="검색" />
+        </form>
+        
+        <h2>POST 방식 전송</h2>
+        <form method="post" action="result.html">
+            <input type="text" name="id" />
+            <input type="password" name="pwd" />
+            <input type="submit" value="로그인" />
+        </form>
+        
     </body>
 </html>
