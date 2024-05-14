@@ -3,6 +3,36 @@
     <head>
         <meta charset="UTF-8" />
         <title>Pseudo Selector</title>
+        
+        <style>
+            table#tbl-member, table#tbl-member th, table#tbl-member td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            
+            table#tbl-blog {
+                width: 100%; /* 브라우저에서 사용 가능한 가로 길이의 100%를 사용 */
+            }
+            
+            table#tbl-blog, table#tbl-blog th, table#tbl-blog td {
+                border-bottom: 1px solid black;
+                border-collapse: collapse;
+            }
+            
+            table#tbl-blog th {
+                background-color: darkseagreen;
+                color: white;
+                text-align: left;
+            }
+            
+            table#tbl-blog > tbody > tr:nth-child(even) {
+                background-color: #EFEFEF; /* RGB의 크기 값을 사용한 색깔 표현 */
+            }
+            
+            table#tbl-blog > tbody > tr:hover {
+                background-color: #e0e0e0;
+            }
+        </style>
     </head>
     <body>
         <nav>
