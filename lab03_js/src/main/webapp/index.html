@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JavaScript</title>
+        
+        <style>
+            #box1, #box2 {
+                border: 2px solid gray;
+                margin: 16px;
+                padding: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>JavaScript 소개</h1>
+        </header>
+        
+        <main>
+            <h2>HTML 컨텐트 변경</h2>
+            <div id="box1" onclick="changeContent()">
+                여기는 Box1 입니다.
+            </div>
+            
+            <h2>HTML 스타일 변경</h2>
+            <div id="box2" onclick="changeAttrs()">
+                여기는 Box2 입니다.
+            </div>
+        </main>
+        
+        <!-- JavaScript 작성 -->
+        <script>
+        // JavaScript 변수 선언 & 초기화:
+        // const 변수이름 = 값; //-> 값을 변경할 수 없는 변수(상수) 선언 & 초기화.
+        // let 변수이름 = 값; //-> 값을 변경할 수 있는 변수 선언 & 초기화.
+        const content1 = '여기는 Box1 입니다.'; // JS에서 문자열은 큰따옴표, 작은따옴표 모두 사용 가능.
+        const content2 = 'Hello, <strong>JavaScript</strong>!';
+        let toggle = true;
+        
+        function changeContent() {
+            const box1 = document.getElementById('box1');
+            if (toggle) {
+                box1.innerHTML = content2;
+                toggle = false;
+            } else {
+                box1.innerHTML = content1;
+                toggle = true;
+            }
+        }
+        
+        function changeAttrs() {
+            const box2 = document.getElementById('box2');
+            box2.style.backgroundColor = 'dodgerblue';
+            box2.style.color = 'white';
+            box2.style.fontSize = '200%';
+            box2.style.fontWeight = 'bold';
+        }
+        
+        </script>
+    </body>
+</html>
