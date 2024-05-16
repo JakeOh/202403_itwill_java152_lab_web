@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JS 조건문</title>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">인덱스 페이지</a>
+        </nav>
+        
+        <main>
+            <h1>JavaScript 조건문</h1>
+            
+            <input type="number" id="numberInput" placeholder="정수 입력" />
+            <button>짝수? 홀수?</button>
+            <button>양수? 음수?</button>
+            <button>삼항연산자</button>
+            <div id="result">결과</div>
+        </main>
+        
+        <!-- HTML 문서에서 JS 코드 작성: -->
+        <script>
+        const x = 1; // 값을 변경할 수 없는 변수(상수) 선언
+        //x = 2; //-> 실행 중 에러 발생(const로 선언된 변수의 값은 재할당할 수 없음!)
+        console.log('x =', x); // 브라우저의 콘솔에 출력.
+        
+        let y = 100; // 값을 변경할 수 있는 변수 선언
+        console.log('y =', y);
+        
+        y = '안녕하세요'; // 값을 재할당할 때 변수 타입이 바뀔 수 있음.
+        console.log('y =', y);
+        
+        /*
+          프로그래밍 언어 종류1:
+          (1) 컴파일 언어: 소스 코드를 컴파일해서 실행가능한 바이너를 만들고 실행하는 언어.
+              - Java: *.java ---compile---> *.class ---실행---> 프로그램 실행.
+              - C, C++, C#, Kotlin, Swift, ...
+          (2) 스크립트(인터프리터) 언어: 소스 코드를 한 문장씩 번역해서 실행하는 언어.
+              - JavaScript, Python, ...
+        
+          프로그래밍 언어 종류2:
+          (1) 정적 타이핑(static typing) 언어
+              - 변수 선언할 때 변수의 타입이 결정되고, 결정된 변수 타입을 바꿀 수 없는 언어.
+              - Java, C, C++, C#, ...
+          (2) 동적 타이핑(dynamic typing) 언어
+              - 변수를 선언할 때 변수 타입이 결정되지 않고, 
+              값을 할당할 때 그 변수의 타입이 결정되는 언어.
+              - JavaScript, Python, ..
+        */
+        
+        
+        </script>
+    </body>
+</html>
