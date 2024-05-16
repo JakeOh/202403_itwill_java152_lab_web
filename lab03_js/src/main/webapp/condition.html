@@ -15,7 +15,7 @@
             <input type="number" id="numberInput" placeholder="정수 입력" />
             <button onclick="checkEven()">짝수? 홀수?</button>
             <button onclick="checkPositive()">양수? 음수?</button>
-            <button>삼항연산자</button>
+            <button onclick="checkEven2()">삼항연산자</button>
             <div id="result">결과</div>
         </main>
         
@@ -74,6 +74,12 @@
             } else {
                 result.innerHTML = '음수';
             }
+        }
+        
+        function checkEven2() {
+            const number = Number(numberInput.value);
+            result.innerHTML = (number % 2) ? 'odd number(홀수)' : 'even number(짝수)';
+            // (number % 2 === 1) ? '홀수' : '짝수'
         }
         
         /*
