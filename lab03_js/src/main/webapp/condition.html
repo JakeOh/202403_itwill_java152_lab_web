@@ -13,8 +13,8 @@
             <h1>JavaScript 조건문</h1>
             
             <input type="number" id="numberInput" placeholder="정수 입력" />
-            <button>짝수? 홀수?</button>
-            <button>양수? 음수?</button>
+            <button onclick="checkEven()">짝수? 홀수?</button>
+            <button onclick="checkPositive()">양수? 음수?</button>
             <button>삼항연산자</button>
             <div id="result">결과</div>
         </main>
@@ -31,6 +31,50 @@
         y = '안녕하세요'; // 값을 재할당할 때 변수 타입이 바뀔 수 있음.
         console.log('y =', y);
         
+        // 아이디가 numberInput인 요소를 찾음:
+        const numberInput = document.getElementById('numberInput');
+        
+        // 아이디가 result인 요소를 찾음:
+        const result = document.getElementById('result');
+        
+        function checkEven() {
+            const number = numberInput.value; // numberInput 요소에 입력된 값.
+            console.log('number =', number);
+            
+            if (number % 2) { // 숫자 number를 2로 나눈 나머지가 있으면
+                result.innerHTML = '홀수';
+            } else { // 나머지가 없으면
+                result.innerHTML = '짝수';
+            }
+        }
+        
+        // =: 할당 연산자. x = 1;
+        // 비교 연산자: ==, ===, !=, !==, ...
+        // (1) 값과 타입을 함께 비교: ===, !==
+        // (2) 자바스크립트가 타입을 암묵적으로 변환한 값만 비교: ==, !=
+        console.log(1 === '1'); //-> false: 숫자 타입 vs 문자열 타입
+        console.log(1 == '1'); //-> true: 자바스크립트가 숫자 1을 문자열 '1'로 변환한 후 비교.
+        
+        // 자바는 조건식의 결과는 반드시 true/false이어야만 함.
+        // (예) if (x % 2 == 0) { ... }
+        // 자바스크립트는 false로 간주하는 값(falsy values)들이 있음.
+        // - 숫자 0
+        // - 빈 문자열('')
+        // - 빈 배열([])
+        // - null
+        // - undefined(값이 할당되지 않은 변수)
+        
+        function checkPositive() {
+            const number = Number(numberInput.value);
+            // Number(arg): arg를 숫자 타입으로 변환하는 함수 
+            if (number > 0) {
+                result.innerHTML = '양수';
+            } else if (number === 0) {
+                result.innerHTML = '영';
+            } else {
+                result.innerHTML = '음수';
+            }
+        }
         
         /*
           프로그래밍 언어 종류1:
