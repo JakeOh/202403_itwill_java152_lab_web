@@ -52,3 +52,43 @@ function minus(x, y) {
 
 result = minus(1, 2);
 console.log(`result = ${result}`);
+
+// default parameter: 기본값이 설정된 파라미터
+function multiply(x, y = 1) {
+    return x * y;
+}
+
+result = multiply(2, 3); // 아규먼트 y를 전달하면 기본값은 무시됨.
+console.log(`result = ${result}`);
+
+result = multiply(2); // 아규먼트 y를 전달하지 않으면 기본값이 사용됨.
+console.log(`result = ${result}`);
+
+/*
+ * JS 함수는 객체(object)!!
+ * 1. 프로퍼티(property)를 가질 수 있음. (예) arguments
+ * 2. 변수에 저장할 수 있음.
+ * 3. 함수를 호출할 때 아규먼트로 함수 (객체)를 전달할 수 있음.
+ * 4. 함수 내부에서 다른 함수를 선언(정의)할 수 있음.
+ * 5. 함수 (객체)를 리턴할 수 있음.
+ */
+
+const plus = add; // 함수 객체 add를 변수 plus에 할당(저장).
+console.log(plus); //-> plus: 함수 객체
+console.log(plus(100, 200)); //-> plus(100, 200): 함수 호출.
+
+// 익명 함수(anonymous function): 이름이 없는 함수.
+const divide = function (x, y) {
+    return x / y;
+};
+
+result = divide(1, 2);
+console.log(`result = ${result}`);
+
+// 화살표 함수(arrow function): 익명 함수를 간단히 표현하는 문법.
+// (param, ...) => { ... }
+// (param, ...) => 리턴값
+const subtract = (x, y) => x - y; // 화살표 함수를 변수 subtract에 저장.
+result = subtract(1, 2);
+console.log(`result = ${result}`);
+
