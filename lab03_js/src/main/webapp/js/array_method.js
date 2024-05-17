@@ -45,3 +45,35 @@ console.log(result);
 arr2.sort((x, y) => x - y);
 console.log(arr2);
 
+
+// forEach, filter, map, reduce:
+const numbers = [1, 2, 3, 4, 5, 6];
+console.log(numbers);
+
+// 배열 numbers의 원소들 중에서 홀수들로만 이루어진 새로운 배열 만드세요.
+const odds = []; // let odds = [];
+for (let x of numbers) {
+    if (x % 2) {
+        odds.push(x); // odds = odds.concact(x);
+    }
+}
+console.log(odds);
+
+//result = numbers.filter(function (x) {
+//    return x % 2;
+//});
+result = numbers.filter((x) => x % 2);
+console.log(result);
+
+// 배열 numbers의 원소들의 제곱을 원소로 갖는 새로운 배열을 만드세요.
+const squares = [];
+for (let x of numbers) {
+    squares.push(x * x);
+}
+console.log(squares);
+
+result = numbers.map((x) => x * x);
+console.log(result);
+
+numbers.forEach((x) => console.log(x));
+
