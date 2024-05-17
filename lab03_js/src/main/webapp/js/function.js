@@ -92,3 +92,33 @@ const subtract = (x, y) => x - y; // 화살표 함수를 변수 subtract에 저�
 result = subtract(1, 2);
 console.log(`result = ${result}`);
 
+// 함수 (객체)를 아규먼트로 전달받는 함수
+function calculate(x, y, op) {
+    return op(x, y);
+}
+
+console.log(calculate(1, 2, add));
+console.log(calculate(1, 2, function (x, y) {return x - y;}));
+console.log(calculate(1, 2, (x, y) => x / y));
+//-> 이벤트 리스너(핸들러) 설정할 때 많이 사용되는 코드 패턴.
+// 콜백(callback): (나중에 호출하기 위해서) 아규먼트로 전달하는 함수.
+
+
+// 지역(내부) 함수: 함수 안에서 선언하는 함수.
+function increase(n) {
+    // 지역 함수는 바깥 함수의 지역 변수(파라미터 포함)들을 사용할 수 있음!
+    function addN(x) {
+        return x + n;
+    }
+    
+    return addN; // 함수 객체 리턴.
+}
+
+const increaseTwo = increase(2);
+console.log(increaseTwo);
+console.log(increaseTwo(100));
+
+const increaseTen = increase(10);
+console.log(increaseTen(100));
+
+console.log(increase(1)(10));
