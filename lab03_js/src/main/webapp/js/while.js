@@ -16,3 +16,15 @@ while (n <= 5) {
 }
 list.innerHTML = html;
 
+n = 1;
+html = '';
+while (n <= 5) {
+    html += `
+    <tr>
+        <td> ${n} </td>
+        <td> 제목 ${n} </td>
+    </tr>
+    `;
+    n++;
+}
+tableBody.innerHTML = html;
