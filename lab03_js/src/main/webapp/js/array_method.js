@@ -89,5 +89,28 @@ sum = numbers.reduce((acc, cur) => acc + cur, 0);
 console.log(`sum = ${sum}`);
 
 // numbers의 모든 원소들의 곱: 1 x 2 x ... x 5 x 6
+result = 1;
+for (let value of numbers) {
+    result = result * value; // result *= value;
+}
+console.log(`result = ${result}`);
 
+result = numbers.reduce((acc, cur) => acc * cur, 1);
+console.log(`result = ${result}`);
 
+// numbers의 원소들 중에서 짝수들의 합: 2 + 4 + 6
+result = numbers.filter((x) => x % 2 === 0)
+        .reduce((acc, cur) => acc + cur, 0);
+console.log(`짝수 합 = ${result}`);
+
+// numbers의 원소들의 제곱의 합: 1 + 4 + 9 + 16 + 25 + 36
+result = numbers.map((x) => x * x)
+        .reduce((acc, cur) => acc + cur, 0);
+console.log(`제곱 합 = ${result}`);
+
+// numbers의 원소들 중에서 짝수들의 제곱의 합: 4 + 16 + 36
+result = numbers
+        .filter((x) => x % 2 === 0)
+        .map((x) => x * x)
+        .reduce((acc, cur) => acc + cur, 0);
+console.log(`짝수 제곱 합 = ${result}`);
