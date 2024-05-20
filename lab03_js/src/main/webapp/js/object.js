@@ -64,3 +64,52 @@ const score1 = new Score(1, 2, 31);
 console.log(score1);
 console.log(score1.sum());
 console.log(score1.mean());
+
+const score2 = new Score(); //-> 모든 필드는 undefined가 됨.
+console.log(score2);
+console.log(score2.sum()); //-> undefined + undefined = NaN(Not a Number)
+
+// 자바스크립트 객체는 for-in 구문에서 사용할 수 있음 -> 프로퍼티 이름들을 iteration.
+const student = {
+    no: 101,
+    name: '오쌤',
+    classNo: 10,
+};
+
+for (let x in student) {
+    console.log(x, ':', student[x]); // student.x 안됨.
+} 
+
+
+// 클래스:
+class Rectangle {
+    // 생성자: 필드 초기화
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    
+    // 메서드: function 키워드를 사용하지 않음!
+    area() {
+        return this.width * this.height;
+    }
+    
+    perimeter() {
+        return (this.width + this.height) * 2;
+    }
+}
+
+// 클래스를 사용한 객체 생성:
+const rect1 = new Rectangle(2, 3);
+console.log(rect1);
+console.log(`넓이 = ${rect1.area()}`);
+console.log(`둘레 = ${rect1.perimeter()}`);
+
+const rect2 = new Rectangle();
+console.log(rect2);
+
+// 원(Circle) 클래스 선언:
+// - 필드: radius. 기본값 0.
+// - 메서드: area(넓이), 둘레 길이(perimeter)
+
+
