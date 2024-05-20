@@ -75,5 +75,19 @@ console.log(squares);
 result = numbers.map((x) => x * x);
 console.log(result);
 
-numbers.forEach((x) => console.log(x));
+result.forEach((x) => console.log(x));
+
+// 배열 numbers의 모든 원소들의 합계
+let sum = 0;
+for (let value of numbers) {
+    sum += value; // sum = sum + value;
+}
+console.log(`sum = ${sum}`);
+
+sum = numbers.reduce((acc, cur) => acc + cur, 0);
+// reduce(callback, initialValue)
+console.log(`sum = ${sum}`);
+
+// numbers의 모든 원소들의 곱: 1 x 2 x ... x 5 x 6
+
 
