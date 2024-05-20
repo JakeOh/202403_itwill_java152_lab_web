@@ -111,5 +111,25 @@ console.log(rect2);
 // 원(Circle) 클래스 선언:
 // - 필드: radius. 기본값 0.
 // - 메서드: area(넓이), 둘레 길이(perimeter)
+class Circle {
+    constructor(radius = 0) {
+        this.radius = radius;
+    }
+    
+    area() {
+        return 3.14 * this.radius * this.radius;
+    }
+    
+    perimeter() {
+        return 2 * 3.14 * this.radius;
+    }
+}
 
+const c1 = new Circle(); //-> 생성자의 default parameter가 사용되는 경우.
+console.log(c1);
+console.log(c1.area());
 
+const c2 = new Circle(10);
+console.log(c2);
+console.log(c2.area());
+console.log(c2.perimeter());
