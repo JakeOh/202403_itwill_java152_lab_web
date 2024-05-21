@@ -33,6 +33,8 @@ public class FirstServlet extends HttpServlet {
 	        throws ServletException, IOException {
         System.out.println("FirstServlet::doGet() 호출");
 		
+        // WAS가 클라이언트로 보내는 응답(response)의 컨텐트 타입(파일 형식/인코딩)을 설정:
+        // 브라우저에서 한글이 깨지지 않도록 하기 위해서.
         response.setContentType("text/html; charset=UTF-8");
         
         response.getWriter()
