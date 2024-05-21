@@ -18,6 +18,9 @@
             <li>
                 <a href="ex1">첫번째 서블릿</a>
             </li>
+            <li>
+                <a href="ex2">두번째 서블릿</a>
+            </li>
         </ul>
     </main>
 </body>
