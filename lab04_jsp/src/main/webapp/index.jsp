@@ -24,6 +24,9 @@
             <li>
                 <a href="ex3">포워드(forward)</a>
             </li>
+            <li>
+                <a href="ex4">리다이렉트(redirect)</a>
+            </li>
         </ul>
     </main>
 </body>
