@@ -30,6 +30,9 @@
             <li>
                 <a href="intro.jsp">JSP 소개</a>
             </li>
+            <li>
+                <a href="main.jsp">include 지시문</a>
+            </li>
         </ul>
     </main>
 </body>
