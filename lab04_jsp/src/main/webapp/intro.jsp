@@ -1,3 +1,4 @@
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
@@ -28,11 +29,25 @@
       HTML 코드에 문자열을 삽입.
 --%>
 
+<%! 
+/* JSP declaration(선언문) */
+private static final String USER = "scott"; // static 상수 필드 선언
+
+// 메서드 선언:
+private void printLog(String msg) {
+    System.out.println("[intro.jsp] " + msg);
+}
+%>
+
+<% /* scriptlet */
+printLog("intro.jsp 실행...");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Insert title here</title>
+    <title>JSP</title>
 </head>
 <body>
     <nav>
@@ -40,6 +55,18 @@
     </nav>
     <main>
         <h1>JSP 소개</h1>
+        
+        <% // scriptlet
+        LocalDateTime now = LocalDateTime.now(); // 지역 변수 선언, 초기화.
+        String date = String.format("%d-%02d-%02d", 
+                now.getYear(), now.getMonthValue(), now.getDayOfMonth());
+        String time = String.format("%02d:%02d:%02d",
+                now.getHour(), now.getMinute(), now.getSecond());
+        %>
+        <h2>날짜: <%= date %></h2> <!-- expression -->
+        <h2>시간: <%= time %></h2>
+        <h2>USER: <%= USER %></h2>
+        
     </main>
 </body>
 </html>
