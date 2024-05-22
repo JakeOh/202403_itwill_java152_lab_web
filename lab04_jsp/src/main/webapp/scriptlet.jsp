@@ -50,6 +50,47 @@
             %>
             </tbody>
         </table>
+        
+        <h2>scriptlet &amp; expression 사용한 테이블 작성</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% for (Contact c : data) { %>
+                <tr>
+                    <td><%= c.getId() %></td>
+                    <td><%= c.getName() %></td>
+                    <td><%= c.getPhone() %></td>
+                    <td><%= c.getEmail() %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+        
+        <h2>scriptlet &amp; expression을 사용한 unordered list</h2>
+        <ul>
+        <%-- <li>이름</li>을 반복문으로 만드세요. --%>
+        <% for (Contact c : data) { %>
+            <li><%= c.getName() %></li>
+        <% } %>
+        </ul>
+        
+        <h2>scriptlet &amp; expression을 사용한 description list</h2>
+        <dl>
+        <%-- <dt>이름</dt><dd>전화번호</dd><dd>이메일</dd> 반복문으로 만드세요. --%>
+        <% for (Contact c : data) { %>
+            <dt><%= c.getName() %></dt>
+            <dd><%= c.getPhone() %></dd>
+            <dd><%= c.getEmail() %></dd>
+        <% } %>
+        </dl>
+        
     </main>
 </body>
 </html>
