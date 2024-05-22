@@ -33,6 +33,9 @@
             <li>
                 <a href="main.jsp">include 지시문</a>
             </li>
+            <li>
+                <a href="scriptlet.jsp">스크립트릿(scriptlet)</a>
+            </li>
         </ul>
     </main>
 </body>
