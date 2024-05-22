@@ -5,6 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <title>form result</title>
+    <style>
+    <% 
+    // 질의 문자열(query string)에 포함된 요청 파라미터의 값을 찾음:
+    String color = request.getParameter("color");
+    String textColor = "";
+    switch (color) {
+    case "r":
+        textColor = "crimson";
+        break;
+    case "g":
+        textColor = "darkgreen";
+        break;
+    case "b":
+        textColor = "slateblue";
+        break;
+    default:
+        textColor = "black";
+    }
+    %>
+    
+    span#username {
+        color: <%= textColor %>;
+    }
+    </style>
 </head>
 <body>
     <%@ include file="header.jspf" %>
@@ -29,7 +53,13 @@
     <% 
     String username = request.getParameter("username");
     %>
-    <h2>안녕하세요, <%= username %>!</h2>
+    <h2>안녕하세요, <span id="username"><%= username %></span>!</h2>
+    
+    <% if (username.equals("admin")) { %>
+        <h3>관리자 페이지</h3>
+    <% } else { %>
+        <h3>일반 사용자 페이지</h3>
+    <% } %>
     
 </body>
 </html>

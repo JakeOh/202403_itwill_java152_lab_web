@@ -18,6 +18,13 @@
                     required autofocus />
             </div>
             <div>
+                <select name="color">
+                    <option value="r">빨강</option>
+                    <option value="b">파랑</option>
+                    <option value="g">초록</option>
+                </select>
+            </div>
+            <div>
                 <input type="submit" value="제출" />
             </div>
         </form>
