@@ -36,6 +36,9 @@
             <li>
                 <a href="scriptlet.jsp">스크립트릿(scriptlet)</a>
             </li>
+            <li>
+                <a href="form.jsp">폼 양식</a>
+            </li>
         </ul>
     </main>
 </body>
