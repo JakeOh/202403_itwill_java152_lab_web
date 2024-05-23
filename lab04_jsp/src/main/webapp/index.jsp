@@ -39,6 +39,9 @@
             <li>
                 <a href="form.jsp">폼 양식</a>
             </li>
+            <li>
+                <a href="actiontag.jsp">JSP Action Tag</a>
+            </li>
         </ul>
     </main>
 </body>
