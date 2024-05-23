@@ -92,6 +92,16 @@
             </tbody>
         </table>
         
+        <h2>URL 태그</h2>
+        <a href="result.jsp?username=gu&est&color=crimson">클릭1</a>
+        
+        <%-- 질의 문장열의 요청 파라미터 값에 특수 기호가 포함될 때 --%>
+        <c:url value="result.jsp" var="url" >
+            <c:param name="username" value="gu&est" />
+            <c:param name="color" value="crimson" />
+        </c:url>
+        <a href="${ url }">클릭2</a>
+        
     </main>
 </body>
 </html>
