@@ -8,8 +8,16 @@
     <packaging>war</packaging>
     <name>Lab04</name>
     <description>Servlet &amp; JSP</description>
-    <dependencies>
-        <dependency>
+    
+    <!-- POM(Project Object Model): 
+    메이븐(Maven)이 프로젝트를 관리, 빌드, 배포할 때 사용하는 파일. 
+    dependencies 태그 안에서 설정한 라이브러리를 다운로드하고 빌드 패스에 추가.
+    메이븐은 라이브러리를 로컬 저장소에서 먼저 찾고,
+    로컬 저장소에 없는 경우에는 중앙(원격) 저장소에서 라이브러리를 로컬 저장소에 다운로드 후
+    빌드 패스에 추가함.
+    -->
+    <dependencies> <!-- 프로젝트 의존성(외부 라이브러리) 관리/설정 -->
+        <dependency> <!-- 의존성(라이브러리) -->
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
             <version>3.0.0</version>
@@ -20,7 +28,8 @@
             <version>3.0.1</version>
         </dependency>
     </dependencies>
-    <build>
+    
+    <build> <!-- 메이븐이 프로젝트를 빌드할 때 사용하는 라이브러리 & JDK 버전 설정 -->
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
