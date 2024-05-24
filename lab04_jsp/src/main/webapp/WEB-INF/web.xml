@@ -25,6 +25,10 @@
     <url-pattern>/ex2</url-pattern>
   </filter-mapping>
   
+  <listener>
+    <listener-class>com.itwill.lab04.listener.ListenerEx</listener-class>
+  </listener>
+  
   <servlet>
     <description></description>
     <display-name>firstServlet</display-name>
