@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.itwill.lab04.model.Contact;
+
 /**
  * Servlet implementation class ContactController
  */
@@ -34,6 +36,23 @@ public class ContactController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	        throws ServletException, IOException {
 		System.out.println("ContactController::doPost() 호출");
+		
+		// 클라이언트가 POST 방식으로 보낸 요청 파라미터 값을 읽음.
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		System.out.printf("id=%d, name=%s, phone=%s, email=%s\n", 
+		        id, name, phone, email);
+		
+		// 요청 파라미터 값들을 이용해서 서비스에 필요한 작업.
+		Contact c = new Contact(id, name, phone, email);
+		System.out.println(c);
+		
+		// 인덱스 페이지로 리다이렉트(redirect)
+		response.sendRedirect("/lab04");
+		
+		// PRG(Post 요청 - Redirect - Get 요청) 패턴.
 	}
 
 }
