@@ -51,6 +51,9 @@
             <li>
                 <a href="mvc">MVC</a>
             </li>
+            <li>
+                <a href="cookie">Cookie</a>
+            </li>
         </ul>
     </main>
 </body>
