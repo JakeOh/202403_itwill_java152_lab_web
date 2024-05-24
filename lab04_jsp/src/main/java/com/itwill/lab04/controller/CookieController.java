@@ -48,6 +48,7 @@ public class CookieController extends HttpServlet {
 		count++; // 방문 횟수를 증가
 		// 방문 횟수를 저장한 쿠키를 response 객체에 포함.
 		Cookie visitCookie = new Cookie("cnt", String.valueOf(count));
+		visitCookie.setMaxAge(24 * 60 * 60); // 쿠키 만료 기간 설정. 단위: 초(second).
 		response.addCookie(visitCookie);
 		
 		// 뷰로 요청을 전달.
