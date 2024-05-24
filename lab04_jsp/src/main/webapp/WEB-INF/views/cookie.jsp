@@ -11,6 +11,7 @@
     
     <main>
         <h1>Cookie</h1>
+        <h2>방문 횟수: ${ visitCount }</h2>
     </main>
 </body>
 </html>
