@@ -1,0 +1,111 @@
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.itwill</groupId>
+    <artifactId>jsp05</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>Lab 5</name>
+    <description>Servlet/JSP Project</description>
+    
+    <properties>
+        <jstl-version>3.0.0</jstl-version>
+        <jslt-impl-version>3.0.1</jslt-impl-version>
+        <log4j-version>2.23.1</log4j-version>
+        <slf4j-api-version>2.0.13</slf4j-api-version>
+        <junit-version>5.10.2</junit-version>
+        <ojdbc11-version>23.4.0.24.05</ojdbc11-version>
+        <hikaricp-version>5.1.0</hikaricp-version>
+    </properties>
+    
+    <dependencies>
+        <!-- Tomcat 10.1.x에서 JSTL(Jakarta Standard Tag Library)를 사용하기 위한 설정 -->
+        <!-- Jakarta Standard Tag Library API -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl-version}</version>
+        </dependency>
+        <!-- Jakarta Standard Tag Library Implementation -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>${jslt-impl-version}</version>
+        </dependency>
+
+        <!-- Log4j, Slf4j 사용하기 위한 설정 -->
+        <!-- The Apache Log4j Implementation -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        <!-- The Apache Log4j API -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        <!-- The Apache Log4j SLF4J 2.0 API binding to Log4j 2 Core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        <!-- The slf4j API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api-version}</version>
+        </dependency>
+
+        <!-- 자바 단위 테스트(Java Unit Test)를 하기 위해서 -->
+        <!-- Module "junit-jupiter-engine" of JUnit 5. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Module "junit-jupiter-api" of JUnit 5. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Oracle JDBC 라이브러리 -->
+        <!-- Oracle JDBC Driver compatible with JDK11, JDK12, JDK13, JDK14 and
+        JDK15 -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>${ojdbc11-version}</version>
+        </dependency>
+
+        <!-- 데이터베이스 커넥션 풀 사용하기 위한 의존성 -->
+        <!-- Ultimate JDBC Connection Pool -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp-version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
