@@ -18,27 +18,32 @@
         <%@ include file="../fragments/header.jspf" %>
         
         <main>
-            <div>
-                <table class="">
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>수정 시간</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${posts}" var="p">
+            <div class="mt-2 card">
+                <div class="card-header text-center">
+                    <h2>POSTS</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
                             <tr>
-                                <td>${p.id}</td>
-                                <td>${p.title}</td>
-                                <td>${p.author}</td>
-                                <td>${p.modifiedTime}</td>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>수정 시간</th>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${posts}" var="p">
+                                <tr>
+                                    <td>${p.id}</td>
+                                    <td>${p.title}</td>
+                                    <td>${p.author}</td>
+                                    <td>${p.modifiedTime}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
