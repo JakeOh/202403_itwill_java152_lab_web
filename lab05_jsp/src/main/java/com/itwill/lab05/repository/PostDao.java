@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,37 +40,50 @@ public enum PostDao {
             stmt = conn.prepareStatement(SQL_SELECT_ALL);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String title = rs.getString("title");
-                String content = rs.getString("content");
-                String author = rs.getString("author");
-                LocalDateTime createdTime = rs.getTimestamp("created_time").toLocalDateTime();
-                LocalDateTime modifiedTime = rs.getTimestamp("modified_time").toLocalDateTime();
-                
-                Post post = Post.builder()
-                        .id(id)
-                        .title(title)
-                        .content(content)
-                        .author(author)
-                        .createdTime(createdTime)
-                        .modifiedTime(modifiedTime)
-                        .build();
+                Post post = fromResultSetToPost(rs);
                 list.add(post);
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources(conn, stmt, rs);
         }
         
         return list;
+    }
+    
+    private Post fromResultSetToPost(ResultSet rs) throws SQLException {
+        int id = rs.getInt("id");
+        String title = rs.getString("title");
+        String content = rs.getString("content");
+        String author = rs.getString("author");
+        LocalDateTime createdTime = rs.getTimestamp("created_time").toLocalDateTime();
+        LocalDateTime modifiedTime = rs.getTimestamp("modified_time").toLocalDateTime();
+        
+        return Post.builder()
+                .id(id)
+                .title(title)
+                .content(content)
+                .author(author)
+                .createdTime(createdTime)
+                .modifiedTime(modifiedTime)
+                .build();
+    }
+    
+    private void closeResources(Connection conn, Statement stmt, ResultSet rs) {
+        // DB 자원들을 해제하는 순서: 생성된 순서의 반대로. rs -> stmt -> conn
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void closeResources(Connection conn, Statement stmt) {
+        closeResources(conn, stmt, null);
     }
     
 }

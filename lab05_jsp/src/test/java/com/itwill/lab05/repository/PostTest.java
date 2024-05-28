@@ -36,6 +36,7 @@ public class PostTest {
         log.debug("dao = {}", dao);
         
         List<Post> result = dao.select();
+        Assertions.assertEquals(3, result.size());
         for (Post p : result) {
             log.debug(p.toString());
         }
