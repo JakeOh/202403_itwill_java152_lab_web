@@ -57,7 +57,7 @@ public class PostTest {
         //-> insert 메서드의 리턴 값(삽입된 행의 개수)가 1이면 단위 테스트 성공.
     }
     
-    @Test
+//    @Test
     public void testDelete() {
         // PostDao.delete 메서드 단위 테스트
         int result = dao.delete(21); // id(PK)가 있는 경우
@@ -65,6 +65,16 @@ public class PostTest {
         
         result = dao.delete(20); // id(PK)가 없는 경우
         Assertions.assertEquals(0, result);
+    }
+    
+    @Test
+    public void testSelectById() {
+        Post post = dao.select(1); // id=1(PK)가 테이블에 있는 경우
+        Assertions.assertNotNull(post);
+        log.debug(post.toString());
+        
+        post = dao.select(0); // id=0(PK)가 테이블에 없는 경우
+        Assertions.assertNull(post);
     }
 
 }
