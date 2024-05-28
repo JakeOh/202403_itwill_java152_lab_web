@@ -53,6 +53,34 @@ public enum PostDao {
         return list;
     }
     
+    // posts 테이블에 insert하는 SQL:
+    private static final String SQL_INSERT = 
+            "insert into posts (title, content, author) values (?, ?, ?)";
+    
+    public int insert(Post post) {
+        log.debug("insert({})", post);
+        log.debug(SQL_INSERT);
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+        try {
+            conn = ds.getConnection();
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1, post.getTitle());
+            stmt.setString(2, post.getContent());
+            stmt.setString(3, post.getAuthor());
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt);
+        }
+        
+        return result;
+    }
+    
     private Post fromResultSetToPost(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String title = rs.getString("title");
