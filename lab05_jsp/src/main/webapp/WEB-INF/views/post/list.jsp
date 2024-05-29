@@ -19,7 +19,7 @@
         
         <main>
             <div class="mt-2 card">
-                <div class="card-header text-center">
+                <div class="card-header">
                     <h2>POSTS</h2>
                 </div>
                 <div class="card-body">
