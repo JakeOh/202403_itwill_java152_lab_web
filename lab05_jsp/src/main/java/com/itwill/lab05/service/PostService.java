@@ -38,4 +38,14 @@ public enum PostService {
         return result; // insert된 행의 개수를 리턴.
     }
     
+    public Post read(int id) {
+        log.debug("read(id={})", id);
+        
+        // 영속성 계층의 메서드를 호출해서 DB 테이블에서 id로 검색하는 SQL을 실행.
+        Post post = postDao.select(id);
+        log.debug("{}", post);
+        
+        return post; // 컨트롤러에게 검색한 Post 객체를 리턴.
+    }
+    
 }

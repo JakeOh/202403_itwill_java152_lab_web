@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.itwill.lab05.repository.Post;
 import com.itwill.lab05.service.PostService;
 
 import jakarta.servlet.ServletException;
@@ -30,7 +31,10 @@ public class PostDetailsController extends HttpServlet {
         log.debug("id={}", id);
         
         // 서비스 계층의 메서드를 호출해서 해당 id의 Post 정보를 DB에서 읽음.
+        Post post = postService.read(id);
+        
         // 검색된 Post 객체를 뷰(JSP)에게 전달.
+        req.setAttribute("post", post);
         
         // 뷰로 이동(forward)
         req.getRequestDispatcher("/WEB-INF/views/post/details.jsp")

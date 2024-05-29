@@ -24,6 +24,36 @@
                 </div>
                 <div class="card-body">
                     <form>
+                        <div class="mt-2">
+                            <label for="id" class="form-label">번호</label>
+                            <input id="id" class="form-control" type="text"
+                                value="${post.id}" readonly />
+                        </div>
+                        <div class="mt-2">
+                            <label for="title" class="form-label">제목</label>
+                            <input id="title" class="form-control" type="text"
+                                value="${post.title}" readonly />
+                        </div>
+                        <div class="mt-2">
+                            <label for="content" class="form-label">내용</label>
+                            <textarea id="content" class="form-control" 
+                                rows="5" readonly>${post.content}</textarea>
+                        </div>
+                        <div class="mt-2">
+                            <label for="author" class="form-label">작성자</label>
+                            <input id="author" class="form-control" type="text"
+                                value="${post.author}" readonly />
+                        </div>
+                        <div class="mt-2">
+                            <label for="createdTime" class="form-label">작성 시간</label>
+                            <input id="createdTime" class="form-control" type="text"
+                                value="${post.createdTime}" readonly />
+                        </div>
+                        <div class="mt-2">
+                            <label for="modifiedTime" class="form-label">최종 수정 시간</label>
+                            <input id="modifiedTime" class="form-control" type="text"
+                                value="${post.modifiedTime}" readonly />
+                        </div>
                     </form>
                 </div>
             </div>
