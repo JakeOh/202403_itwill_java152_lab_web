@@ -25,7 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 삭제 버튼에 클릭 이벤트 리스너를 설정.
     btnDelete.addEventListener('click', () => {
         const result = confirm('정말 삭제할까요?');
-        console.log(result);
+//        console.log(result); //-> confirm()의 리턴 값은 true(확인 클릭)/fasle(취소 클릭)
+        if (result) {
+            // 삭제(GET 방식) 요청을 서버로 보냄.
+            location.href = `delete?id=${inputId.value}`;
+        }
     });
     
 });
