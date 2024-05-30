@@ -23,7 +23,7 @@
                     <h2>포스트 수정 페이지</h2>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form id="modifyForm">
                         <div class="mt-2">
                             <label for="id" class="form-label">번호</label>
                             <input id="id" class="form-control" type="text"
@@ -57,5 +57,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
         crossorigin="anonymous"></script>
+    <script src="../js/post_modify.js"></script>
 </body>
 </html>
