@@ -35,7 +35,8 @@ public class PostUpdateController extends HttpServlet {
                 .build();
         log.debug("{}", post);
         
-        // TODO: 서비스 계층의 메서드를 호출해서 글의 제목과 내용을 업데이트.
+        // 서비스 계층의 메서드를 호출해서 글의 제목과 내용을 업데이트.
+        postService.update(post);
         
         // 상세보기 화면으로 이동(redirect)
         String url = req.getContextPath() + "/post/details?id=" + id;

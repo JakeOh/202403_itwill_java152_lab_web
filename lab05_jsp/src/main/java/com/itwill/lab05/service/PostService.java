@@ -57,4 +57,14 @@ public enum PostService {
         return result;
     }
     
+    public int update(Post post) {
+        log.debug("update({})", post);
+        
+        // 영속성 계층의 메서드를 호출해서 DB posts 테이블을 update.
+        int result = postDao.update(post);
+        log.debug("update result = {}", result);
+        
+        return result;
+    }
+    
 }
