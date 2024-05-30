@@ -27,19 +27,19 @@
                         <div class="mt-2">
                             <label for="id" class="form-label">번호</label>
                             <input id="id" class="form-control" type="text"
-                                value="${post.id}" readonly />
+                                name="id" value="${post.id}" readonly />
                         </div>
                         <div class="mt-2">
                             <label for="title" class="form-label">제목</label>
                             <input id="title" class="form-control" type="text"
-                                value="${post.title}" />
+                                name="title" value="${post.title}" />
                         </div>
                         <div class="mt-2">
                             <label for="content" class="form-label">내용</label>
                             <textarea id="content" class="form-control" 
-                                rows="5">${post.content}</textarea>
+                                name="content" rows="5">${post.content}</textarea>
                         </div>
-                        <div class="mt-2">
+                        <div class="mt-2 d-none">
                             <label for="author" class="form-label">작성자</label>
                             <input id="author" class="form-control" type="text"
                                 value="${post.author}" readonly />

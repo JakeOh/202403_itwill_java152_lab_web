@@ -32,4 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // 업데이트 버튼에 클릭 이벤트 리스너를 설정.
+    btnUpdate.addEventListener('click', () => {
+        // 제목과 내용이 비어있는 지 체크:
+        const title = inputTitle.value; // input 요소에 입력된 값.
+        const content = textareaContent.value; // textarea 요소에 입력된 값.
+        if (title === '' || content === '') {
+            alert('제목과 내용은 반드시 입력해야 합니다!');
+            return; // 함수 종료
+        }
+        
+        const result = confirm('변경된 내용을 저장할까요?');
+        if (result) {
+            modifyForm.method = 'post'; // 폼 제출 방식 설정.
+            modifyForm.action = 'update'; // 폼 제출 요청 주소 설정.
+            modifyForm.submit(); // 폼 제출(서버로 요청을 보냄).
+        }
+        
+    });
+    
 });
