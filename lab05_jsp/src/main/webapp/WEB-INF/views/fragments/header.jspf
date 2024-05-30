@@ -27,12 +27,12 @@
                     <a class="nav-link" href="${newPostPage}">New Post</a>
                 </li>
                 <li class="nav-item">
-                    <!-- TODO: 로그인 url 작성 -->
-                    <a class="nav-link" href="#">로그인</a>
+                    <c:url var="signInPage" value="/user/signin" />
+                    <a class="nav-link" href="${signInPage}">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <!-- TODO: 회원가입 url 작성 -->
-                    <a class="nav-link" href="#">회원가입</a>
+                    <c:url var="signUpPage" value="/user/signup" />
+                    <a class="nav-link" href="${signUpPage}">회원가입</a>
                 </li>
             </ul>
         </div>

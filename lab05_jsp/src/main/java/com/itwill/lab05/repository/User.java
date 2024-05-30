@@ -64,6 +64,48 @@ public class User {
                 + points + "]";
     }
 
-    // TODO: builder 패턴
+    // builder 패턴
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+    
+    public static class UserBuilder {
+        private Integer id;
+        private String userid;
+        private String password;
+        private String email;
+        private Integer points;
+        
+        private UserBuilder() {}
+        
+        public UserBuilder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+        
+        public UserBuilder userid(String userid) {
+            this.userid = userid;
+            return this;
+        }
+        
+        public UserBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+        
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+        
+        public UserBuilder points(Integer points) {
+            this.points = points;
+            return this;
+        }
+        
+        public User build() {
+            return new User(id, userid, password, email, points);
+        }
+    }
     
 }

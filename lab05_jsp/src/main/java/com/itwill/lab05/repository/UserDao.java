@@ -1,5 +1,11 @@
 package com.itwill.lab05.repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +20,43 @@ public enum UserDao {
     
     private final HikariDataSource ds = DataSourceUtil.getInstance().getDataSource();
 
-    // TODO: users 테이블에 insert SQL 문장 & 메서드
+    private static final String SQL_INSERT = 
+            "insert into users (userid, password, email) values (?, ?, ?)";
     
+    public int insert(User user) {
+        log.debug("insert({})", user);
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+        try {
+            conn = ds.getConnection();
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1, user.getUserid());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getEmail());
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt);
+        }
+        
+        return result;
+    }
+    
+    private void closeResources(Connection conn, Statement stmt, ResultSet rs) {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void closeResources(Connection conn, Statement stmt) {
+        closeResources(conn, stmt, null);
+    }
 }
