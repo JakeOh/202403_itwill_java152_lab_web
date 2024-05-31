@@ -4,7 +4,6 @@
     xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
     id="WebApp_ID" version="6.0">
     <display-name>lab05_jsp</display-name>
-    
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>com.itwill.lab05.filter.CharacterEncodingFilter</filter-class>
@@ -17,5 +16,17 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+    <filter>
+        <display-name>authenticationFilter</display-name>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>com.itwill.lab05.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/post/create</url-pattern>
+        <url-pattern>/post/details</url-pattern>
+        <url-pattern>/post/modify</url-pattern>
+        <url-pattern>/post/update</url-pattern>
+        <url-pattern>/post/delete</url-pattern>
+    </filter-mapping>
 </web-app>
