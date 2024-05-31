@@ -12,7 +12,7 @@ public enum UserService {
     
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     
-    private UserDao userDao = UserDao.INSTANCE;
+    private final UserDao userDao = UserDao.INSTANCE;
     
     // 회원 가입에 필요한 메서드. userDao.insert() 호출.
     public int signUp(User user) {

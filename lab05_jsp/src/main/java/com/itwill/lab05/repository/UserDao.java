@@ -25,6 +25,7 @@ public enum UserDao {
     
     public int insert(User user) {
         log.debug("insert({})", user);
+        log.debug(SQL_INSERT);
         
         Connection conn = null;
         PreparedStatement stmt = null;
