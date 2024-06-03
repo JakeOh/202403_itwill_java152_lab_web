@@ -84,6 +84,32 @@ public enum UserDao {
         return result;
     }
     
+    // USERS.POINTS 업데이트 SQL 문장:
+    private static final String SQL_UPDATE_POINTS = 
+            "update users set points = points + ? where userid = ?";
+    
+    public int updatePoints(String userid, int points) {
+        log.debug("updatePoints(userid={}, points={})", userid, points);
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int result = 0;
+        try {
+            conn = ds.getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE_POINTS);
+            stmt.setInt(1, points);
+            stmt.setString(2, userid);
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt);
+        }
+        
+        return result;
+    }
+    
     private User fromResultSetToUser(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String userid = rs.getString("userid");

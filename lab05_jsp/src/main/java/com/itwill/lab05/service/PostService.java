@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.itwill.lab05.repository.Post;
 import com.itwill.lab05.repository.PostDao;
+import com.itwill.lab05.repository.UserDao;
 
 // MVC 웹 아키텍쳐에서 Service(Business) 계층을 담당하는 클래스.
 // Persistence(Repository) 계층의 기능을 사용해서 비즈니스 로직을 구현하는 객체.
@@ -18,6 +19,7 @@ public enum PostService {
     
     // Persistence(Repository) 계층의 기능(메서드)들을 사용하기 위해서.
     private final PostDao postDao = PostDao.INSTANCE;
+    private final UserDao userDao = UserDao.INSTANCE;
     
     public List<Post> read() {
         log.debug("read()");
@@ -34,6 +36,10 @@ public enum PostService {
         // Repository 계층의 메서드를 사용해서 DB 테이블에 행을 삽입(insert)
         int result = postDao.insert(post);
         log.debug("insert result = {}", result);
+        
+        // UserDao 메서드 호출(USERS.POINTS 컬럼 업데이트)
+        // 글 작성자에게 10포인트를 줌.
+        userDao.updatePoints(post.getAuthor(), 10);
         
         return result; // insert된 행의 개수를 리턴.
     }
