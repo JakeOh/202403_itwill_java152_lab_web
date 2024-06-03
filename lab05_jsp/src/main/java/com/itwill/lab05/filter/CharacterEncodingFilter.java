@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpFilter;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class CharacterEncodingFilter extends HttpFilter {
     private static final long serialVersionUID = 1L;
@@ -31,6 +32,9 @@ public class CharacterEncodingFilter extends HttpFilter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        String remoteAddr = request.getRemoteAddr();
+        log.debug("누구? {}", remoteAddr);
+        
         // 요청(request) 객체의 문자열 인코딩 타입을 (UTF-8로) 설정: 
         request.setCharacterEncoding(encoding);
         
