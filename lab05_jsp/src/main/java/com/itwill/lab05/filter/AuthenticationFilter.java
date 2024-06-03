@@ -2,8 +2,15 @@ package com.itwill.lab05.filter;
 
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
@@ -15,6 +22,7 @@ import jakarta.servlet.ServletResponse;
  */
 public class AuthenticationFilter extends HttpFilter {
     private static final long serialVersionUID = 1L;
+    private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
 
     /**
 	 * @see Filter#destroy()
@@ -36,8 +44,42 @@ public class AuthenticationFilter extends HttpFilter {
 
 	    HttpServletRequest req = ((HttpServletRequest) request);
 	    
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+	    String reqUrl = req.getRequestURL().toString();
+	    log.debug("request URL = {}", reqUrl);
+	    
+	    String contextPath = req.getContextPath();
+	    log.debug("context path(root) = {}", contextPath);
+	    
+	    String reqUri = req.getRequestURI();
+	    log.debug("request URI = {}", reqUri);
+	    
+	    String qs = req.getQueryString();
+	    log.debug("query string = {}", qs);
+	    
+	    String target = ""; // 로그인 성공했을 때 이동(redirect)할 요청 주소
+	    if (qs == null) {
+	        target = URLEncoder.encode(reqUrl, "UTF-8");
+	    } else {
+	        target = URLEncoder.encode(reqUrl + "?" + qs, "UTF-8");
+	    }
+	    log.debug("target = {}", target);
+	    
+	    // 세션에 로그인 정보(signedInUser)가 있는 지를 체크:
+		HttpSession session = req.getSession();
+		Object signedInUser = session.getAttribute("signedInUser");
+		if (signedInUser == null) { // 로그인 안 된 상태
+		    log.debug("로그아웃 상태 --> 로그인 페이지로 이동 --> 로그인 성공 후 target으로 이동");
+		    
+		    String url = req.getContextPath() + "/user/signin?target=" + target;
+		    ((HttpServletResponse) response).sendRedirect(url);
+		    
+		} else { // 로그인 상태
+		    log.debug("로그인 상태: {}", signedInUser);
+		    
+		    // 요청을 계속 처리(-> 요청을 처리하는 서블릿으로 전달)
+		    chain.doFilter(request, response);
+		}
+		
 	}
 
 	/**
