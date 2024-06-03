@@ -90,6 +90,7 @@ public enum UserDao {
     
     public int updatePoints(String userid, int points) {
         log.debug("updatePoints(userid={}, points={})", userid, points);
+        log.debug(SQL_UPDATE_POINTS);
         
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -108,6 +109,35 @@ public enum UserDao {
         }
         
         return result;
+    }
+    
+    private static final String SQL_SELECT_BY_USERID = 
+            "select * from users where userid = ?";
+    
+    public User selectByUserid(String userid) {
+        log.info("selectByUserid(userid={})", userid);
+        log.info(SQL_SELECT_BY_USERID);
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            conn = ds.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_USERID);
+            stmt.setString(1, userid);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = fromResultSetToUser(rs);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
+        
+        return user;
     }
     
     private User fromResultSetToUser(ResultSet rs) throws SQLException {

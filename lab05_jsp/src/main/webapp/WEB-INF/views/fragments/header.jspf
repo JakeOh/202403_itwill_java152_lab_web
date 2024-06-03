@@ -36,6 +36,12 @@
                             <span>${signedInUser}</span> 로그아웃
                         </a>
                     </li>
+                    <li>
+                        <c:url var="userProfilePage" value="/user/profile">
+                            <c:param name="userid" value="${signedInUser}"></c:param>
+                        </c:url>
+                        <a class="nav-link" href="${userProfilePage}">내 정보</a>
+                    </li>
                 </c:if>
                 <c:if test="${empty signedInUser}">
                     <%-- 세션에 로그인 정보가 없는 경우 --%>
