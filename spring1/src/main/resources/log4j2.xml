@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5p [%-40.40logger] %m%n" />
+        </Console>
+    </Appenders>
+    <!--  
+    로그 패턴:
+      o. %d, %date: 로그 출력 날짜/시간.
+      o. %p, %level: 로그 레벨. all < trace < debug < info < warn < error < fatal < off
+      o. %c, %logger: 로그를 출력하는 Logger 객체.
+      o. %m, %message: 로그 메시지.
+      o. %n: 줄바꿈(new line).
+      o. %L, %line: 로그를 출력하는 소스 코드의 줄 번호.
+    -->
+    <Loggers>
+        <Logger name="com.zaxxer.hikari" level="info" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Root level="debug" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
