@@ -1,11 +1,11 @@
 package com.itwill.spring1.web;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring1.dto.UserDto;
@@ -65,7 +65,18 @@ public class ExampleController {
         
         // UserDto 객체를 뷰로 전달:
         model.addAttribute("user", user);
-        
     }
 
+    @PostMapping("/ex2")
+    public String ex2(UserDto dto, Model model) {
+        log.debug("ex2(dto={})", dto);
+        // 디스패쳐 서블릿은 컨트롤러 메서드를 호출하기 위해서
+        // UserDto 클래스 기본 생성자를 호출하고, 요청 파라미터 이름으로 setter를 찾아서 호출.
+        // 생성된 객체를 컨트롤러 메서드의 아규먼트로 전달.
+        
+        model.addAttribute("user", dto);
+        
+        return "ex1"; //-> 뷰 이름
+    }
+    
 }
