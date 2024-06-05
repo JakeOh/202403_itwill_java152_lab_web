@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.spring1.dto.UserDto;
+
 import lombok.extern.slf4j.Slf4j;
 
 // POCO(Plain Old C++(C#) Object)
@@ -48,8 +50,22 @@ public class ExampleController {
     
     @GetMapping("/ex1")
     public void example1(@RequestParam(name = "username") String username,
-            @RequestParam(name = "age") int age) {
+            @RequestParam(name = "age", defaultValue = "0") int age,
+            Model model) {
         log.info("exmaple1(username={}, age={})", username, age);
+        // 컨트롤러 메서드 파라미터를 선언할 때 @RequestParam 애너테이션을 사용하면,
+        // 디스패쳐 서블릿이 컨트롤러 메서드를 호출할 때, 
+        // (1) request.getParameter("username"), 
+        // Integer.parseInt(request.getParameter("age")) 호출해서
+        // 요청 파라미터 값들을 읽고, 
+        // (2) 컨트롤러 메서드의 아규먼트로 전달해 줌.
+        
+        // 요청 파라미터 값들로 UserDto 객체를 생성:
+        UserDto user = UserDto.builder().username(username).age(age).build();
+        
+        // UserDto 객체를 뷰로 전달:
+        model.addAttribute("user", user);
+        
     }
 
 }
