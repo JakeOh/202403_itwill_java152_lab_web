@@ -1,10 +1,12 @@
 package com.itwill.spring1.web;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +37,19 @@ public class ExampleController {
         return "home";
         //-> 컨트롤러 메서드가 문자열을 리턴하면, 디스패쳐 서블릿이 뷰의 이름을 찾는 데 사용.
         // 디스패쳐 서블릿이 뷰 리졸버를 이용해서 /WEB-INF/view/returnValue.jsp 경로를 찾을 수 있음.
+    }
+    
+    @GetMapping("/example")
+    public void controllerExample() {
+        log.debug("controllerExmaple()");
+        // 컨트롤러 메서드가 리턴 값이 없는(void로 선언된) 경우,
+        // 요청 주소가 뷰의 이름이 됨.
+    }
+    
+    @GetMapping("/ex1")
+    public void example1(@RequestParam(name = "username") String username,
+            @RequestParam(name = "age") int age) {
+        log.info("exmaple1(username={}, age={})", username, age);
     }
 
 }

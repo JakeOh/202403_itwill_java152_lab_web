@@ -14,20 +14,28 @@
 </head>
 <body>
     <header>
-        <h1>Home</h1>
-        <h2>${now}</h2>
+        <h1>Example 페이지</h1>
     </header>
     
+    <nav>
+        <ul>
+            <li>
+                <c:url var="homePage" value="/" />
+                <a href="${homePage}">홈 페이지</a>
+            </li>
+        </ul>
+    </nav>
+    
     <main>
-        <h1>Contents</h1>
-        <nav>
-            <ul>
-                <li>
-                    <c:url var="exPage" value="/example" />
-                    <a href="${exPage}">컨트롤러 예제</a>
-                </li>
-            </ul>
-        </nav>
+        <section>
+            <h2>GET 방식 요청</h2>
+            <c:url var="ex1" value="/ex1" />
+            <form method="get" action="${ex1}">
+                <input type="text" name="username" placeholder="이름 입력" />
+                <input type="number" name="age" placeholder="나이 입력" />
+                <input type="submit" value="제출" />
+            </form>
+        </section>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
