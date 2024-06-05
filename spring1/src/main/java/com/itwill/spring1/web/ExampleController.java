@@ -87,4 +87,22 @@ public class ExampleController {
         log.debug("test()");
     }
     
+    @GetMapping("/test2")
+    public String forward() {
+        log.debug("forward()");
+        
+        return "forward:/test";
+        // 컨트롤러 메서드가 "forward:"으로 시작하는 문자열을 리턴 -> 포워드 방식의 이동.
+        // 포워드 방식의 페이지 이동 - 최초 요청 주소가 바뀌지 않음!
+    }
+    
+    @GetMapping("/test3")
+    public String redirect() {
+        log.debug("redirect()");
+        
+        return "redirect:/test";
+        // 컨트롤러 메서드가 "redirect:" 시작하는 문자열을 리턴 -> 리다이렉트 이동.
+        // 리다이렉트 방식의 페이지 이동 - 최초 요청 주소가 리다이렉트 되는 주소로 바뀜!
+    }
+    
 }

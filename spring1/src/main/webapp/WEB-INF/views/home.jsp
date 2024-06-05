@@ -16,6 +16,11 @@
     <header>
         <h1>Home</h1>
         <h2>${now}</h2>
+        <!-- img alt="뉴욕" src="/spring1/images/newyork.jpg" -->
+        <!-- img alt="뉴욕" src="./images/newyork.jpg"  -->
+        <c:url var="newyork" value="/images/newyork.jpg" />
+        <img alt="뉴욕" src="${newyork}" />
+        <!-- img src="http://localhost:8080/spring1/images/newyork.jpg" -->
     </header>
     
     <main>
@@ -31,11 +36,11 @@
                     <a href="${testPage}">테스트 페이지</a>
                 </li>
                 <li>
-                    <c:url var="forwardPage" value="/forward" />
+                    <c:url var="forwardPage" value="/test2" />
                     <a href="${forwardPage}">포워드</a>
                 </li>
                 <li>
-                    <c:url var="redirectPage" value="/redirect" />
+                    <c:url var="redirectPage" value="/test3" />
                     <a href="${redirectPage}">리다이렉트</a>
                 </li>
             </ul>
