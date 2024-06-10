@@ -43,6 +43,22 @@
                     <c:url var="redirectPage" value="/test3" />
                     <a href="${redirectPage}">리다이렉트</a>
                 </li>
+                <li>
+                    <c:url var="rest1" value="/rest1" />
+                    <a href="${rest1}">REST 1</a>
+                </li>
+                <li>
+                    <c:url var="rest2" value="/rest2" />
+                    <a href="${rest2}">REST 2</a>
+                </li>
+                <li>
+                    <c:url var="rest3" value="/rest3" />
+                    <a href="${rest3}">REST Controller 3</a>
+                </li>
+                <li>
+                    <c:url var="rest4" value="/rest4" />
+                    <a href="${rest4}">REST Controller 4</a>
+                </li>
             </ul>
         </nav>
     </main>
