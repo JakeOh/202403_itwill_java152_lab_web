@@ -3,10 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    
     <settings>
         <!-- 테이블 컬럼 이름의 밑줄(underscore)를 자바 클래스의 카멜 표기법 필드로 변환. -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
 
+    <!-- 매퍼 XML 파일에서 resultType 속성을 설정할 때 간단히 하기 위해서 -->
+    <typeAliases>
+        <typeAlias type="com.itwill.spring2.repository.Post" alias="Post" />
+    </typeAliases>
 </configuration>

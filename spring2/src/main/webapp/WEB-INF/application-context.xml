@@ -34,5 +34,9 @@
         <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
     
+    <!-- MyBatis-Spring 프레임워크에서 생성하고 관리하는 bean을 설정: 
+        base-package와 그 하위 패키지에 있는 인터페이스들을 구현한 객체를 생성해 줌.
+    -->
+    <mybatis:scan base-package="com.itwill.spring2.repository" />
 
 </beans>
