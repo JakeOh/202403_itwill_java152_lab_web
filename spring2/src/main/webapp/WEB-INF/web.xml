@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    id="WebApp_ID" version="6.0">
+    
+    <display-name>spring2</display-name>
+    
+    <!-- Context Parameter(WAS의 환경 설정 변수) 설정 -->
+    <!-- 스프링 컨텍스트를 저장한 파일 위치를 설정. ContextLoaderListener가 사용하는 XML -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/application-context.xml</param-value>
+    </context-param>
+    
+    <!-- Filter 설정 -->
+    <!-- 스프링 프레임워크에서 제공되는 문자열 인코딩 필터 사용 설정 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Listener 설정 -->
+    <!-- 스프링 프레임워크의 컨텍스트 로더 리스너 설정: 
+        WAS에서 ContextLoaded 이벤트가 발생했을 때, 컨텍스트 파라미터들 중에서
+        contextConfiguration 파라미터에 설정된 파일 application-context.xml 파일을 읽음.
+    -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <!-- Servlet 설정 -->
+    <!-- 스프링 프레임워크에서 제공하는 디스패쳐 서블릿 설정 -->
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 디스패쳐 서블릿의 컨텍스트(설정) -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
