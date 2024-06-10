@@ -3,6 +3,7 @@ package com.itwill.spring2.datasource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -32,10 +33,16 @@ public class DataSourceTest {
     @Autowired // 스프링 컨테이너가 생성, 관리하는 빈(bean)을 변수에 자동 할당(주입).
     private HikariDataSource ds;
     
+    @Autowired
+    private SqlSessionFactoryBean session;
+    
     @Test
     public void test() {
         Assertions.assertNotNull(ds);
         log.debug("ds = {}", ds);
+        
+        Assertions.assertNotNull(session);
+        log.debug("session = {}", session);
     }
 
 }

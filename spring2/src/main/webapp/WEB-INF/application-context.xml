@@ -24,5 +24,15 @@
     <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
         <constructor-arg ref="hikariConfig" />
     </bean>
+    
+    <!-- SqlSessionFactoryBean 생성을 위한 설정: 
+      데이터 소스를 이용해서 SQL 문장을 실행, 결과 처리해서 리턴할 수 있는 객체.
+    -->
+    <bean id="session" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds" />
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+    
 
 </beans>
