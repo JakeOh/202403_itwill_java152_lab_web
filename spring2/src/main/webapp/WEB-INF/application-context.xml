@@ -8,5 +8,21 @@
         http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring.xsd">
 
     <!-- bean definitions here -->
+    
+    <!-- HikariConfig 빈(bean) 생성을 위한 설정 -->
+    <!-- hikariConfig = new HikariConfig(); -->
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+        <!-- hikariConfig.setDriverClassName(new OracleDriver()); -->
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="username" value="jspstudy" />
+        <property name="password" value="jspstudy" />
+    </bean>
+    
+    <!-- HikariDataSource 빈 생성을 위한 설정 -->
+    <!-- ds = new HikariDataSource(hikariConfig); -->
+    <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+        <constructor-arg ref="hikariConfig" />
+    </bean>
 
 </beans>
