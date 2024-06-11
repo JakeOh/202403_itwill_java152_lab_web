@@ -4,8 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.spring2.repository.PostDao">
 
+    <!-- posts 테이블 전체 검색. 목록 보기. -->
     <select id="selectOrderByIdDesc" resultType="Post">
         select * from posts order by id desc
     </select>
+    
+    <!-- posts 테이블에서 id(PK)로 검색. 상세보기. -->
+    <select id="selectById" resultType="Post">
+        select * from posts where id = #{id}
+    </select>
+    
+    <!-- posts 테이블에 행 삽입. 새 글 작성. -->
+    <insert id="insertPost">
+        insert into posts (title, content, author)
+        values (#{title}, #{content}, #{author})
+    </insert>
     
 </mapper>
