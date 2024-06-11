@@ -42,7 +42,7 @@ public class PostDaoTest {
         Assertions.assertNull(post2);
     }
     
-    @Test
+//    @Test
     public void testInsert() {
         // insert할 데이터
         Post post = Post.builder()
@@ -51,6 +51,24 @@ public class PostDaoTest {
                 .author("admin")
                 .build();
         int result = postDao.insertPost(post);
+        Assertions.assertEquals(1, result);
+    }
+    
+//    @Test
+    public void testUpdate() {
+        // 업데이트할 포스트 객체:
+        Post post = Post.builder()
+                .id(101)
+                .title("MyBatis 업데이트")
+                .content("MyBatis-Spring을 사용한 데이터베이스 테이블 업데이트")
+                .build();
+        int result = postDao.updatePost(post);
+        Assertions.assertEquals(1, result);
+    }
+    
+    @Test
+    public void testDelete() {
+        int result = postDao.deletePost(101);
         Assertions.assertEquals(1, result);
     }
     

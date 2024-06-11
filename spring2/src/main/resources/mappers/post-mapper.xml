@@ -20,4 +20,16 @@
         values (#{title}, #{content}, #{author})
     </insert>
     
+    <!-- posts 테이블에서 해당 id의 제목과 내용, 수정시간 업데이트. -->
+    <update id="updatePost">
+        update posts
+        set title = #{title}, content = #{content}, modified_time = systimestamp
+        where id = #{id}
+    </update>
+    
+    <!-- posts 테이블에서 해당 id의 행을 삭제. -->
+    <delete id="deletePost">
+        delete from posts where id = #{id}
+    </delete>
+    
 </mapper>
