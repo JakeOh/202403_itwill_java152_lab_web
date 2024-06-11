@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.itwill.spring2.repository.Post;
+import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class PostController {
         log.debug("list()");
         
         // 서비스 컴포넌트의 메서드를 호출, 포스트 목록을 읽어옴 -> 뷰에 전달.
-        List<Post> list = postService.read();
+        List<PostListDto> list = postService.read();
         model.addAttribute("posts", list);
         
         // 뷰: /WEB-INF/views/post/list.jsp

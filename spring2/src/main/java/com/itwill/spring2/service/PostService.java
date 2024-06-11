@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.repository.PostDao;
 
@@ -20,15 +21,24 @@ public class PostService {
     
     // 생성자에 의한 의존성 주입:
     // (1) final 필드 선언. (2) final 필드를 초기화하는 생성자 작성.
-    private final PostDao postDao; 
+    private final PostDao postDao;
 //    public PostService(PostDao postDao) {
 //        this.postDao = postDao;
 //    }
 
-    public List<Post> read() {
+    public List<PostListDto> read() {
         log.debug("read()");
         
-        return postDao.selectOrderByIdDesc();
+        List<Post> list = postDao.selectOrderByIdDesc();
+        
+//        List<PostListDto> result = new ArrayList<>();
+//        for (Post p : list) {
+//            result.add(PostListDto.fromEntity(p));
+//        }
+        
+        return list.stream()
+                .map(PostListDto::fromEntity) // map((x) -> PostListDto.fromEntity(x))
+                .toList();
     }
     
 }
