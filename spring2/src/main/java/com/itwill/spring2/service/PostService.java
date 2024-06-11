@@ -41,4 +41,10 @@ public class PostService {
                 .toList();
     }
     
+    public Post read(Integer id) {
+        log.debug("read(id={})", id);
+        
+        return postDao.selectById(id);
+    }
+    
 }

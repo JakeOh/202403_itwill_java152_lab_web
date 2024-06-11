@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring2.dto.PostListDto;
+import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,14 @@ public class PostController {
         model.addAttribute("posts", list);
         
         // 뷰: /WEB-INF/views/post/list.jsp
+    }
+    
+    @GetMapping("/details")
+    public void details(@RequestParam(name = "id") int id, Model model) {
+        log.debug("details(id={})", id);
+        
+        Post post = postService.read(id);
+        model.addAttribute("post", post);
     }
     
 }
