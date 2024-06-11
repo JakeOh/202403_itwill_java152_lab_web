@@ -27,7 +27,7 @@ public class PostDaoTest {
         
         List<Post> list = postDao.selectOrderByIdDesc();
         for (Post p : list) {
-            System.out.println(p);
+            System.out.println("\t" + p);
         }
         
     }
