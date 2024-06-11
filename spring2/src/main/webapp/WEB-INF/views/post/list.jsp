@@ -16,6 +16,36 @@
     <div class="container-fluid">
         <c:set var="pageTitle" value="Post List" />
         <%@ include file="../fragments/header.jspf" %>
+        
+        <main>
+            <div class="mt-2 card">
+                <div class="card-header">
+                    <h2>포스트 목록</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>수정시간</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="p" items="${posts}">
+                                <tr>
+                                    <td>${p.id}</td>
+                                    <td>${p.title}</td>
+                                    <td>${p.author}</td>
+                                    <td>${p.modifiedTime}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
