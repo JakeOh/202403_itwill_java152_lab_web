@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.service.PostService;
@@ -45,7 +47,17 @@ public class PostController {
     
     @GetMapping("/create")
     public void create() {
-        log.debug("create() GET");
+        log.debug("GET: create()");
+    }
+    
+    @PostMapping("/create")
+    public String create(PostCreateDto dto) {
+        log.debug("POST: create(dto={})", dto);
+        
+        // 서비스 컴포넌트의 메서드를 호출해 데이터베이스에 새 글을 저장.
+        postService.create(dto);
+        
+        return "redirect:/post/list"; // 포스트 목록 페이지로 리다이렉트
     }
     
 }

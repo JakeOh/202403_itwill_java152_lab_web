@@ -18,6 +18,32 @@
         <%@ include file="../fragments/header.jspf" %>
         
         <main>
+            <div class="mt-2 card">
+                <div class="card-header">
+                    <h2>새 글 작성</h2>
+                </div>
+                <div class="card-body">
+                    <c:url var="postCreatePage" value="/post/create" />
+                    <form method="post" action="${postCreatePage}">
+                    <!-- form에서 action 속성 값을 설정하지 않으면 현재 요청 주소로 다시 요청을 보냄. -->
+                        <div class="mt-2">
+                            <input class="form-control" 
+                                type="text" name="title" placeholder="제목 입력" required autofocus />
+                        </div>
+                        <div class="mt-2">
+                            <textarea class="form-control" 
+                                rows="5" name="content" placeholder="내용 입력" required></textarea>
+                        </div>
+                        <div class="mt-2">
+                            <input class="form-control" 
+                                type="text" name="author" placeholder="작성자" required />
+                        </div>
+                        <div class="mt-2">
+                            <input class="form-control btn btn-outline-success" type="submit" value="저장" />
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
     </div>
     
