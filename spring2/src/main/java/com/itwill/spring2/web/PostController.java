@@ -43,4 +43,9 @@ public class PostController {
         model.addAttribute("post", post);
     }
     
+    @GetMapping("/create")
+    public void create() {
+        log.debug("create() GET");
+    }
+    
 }
