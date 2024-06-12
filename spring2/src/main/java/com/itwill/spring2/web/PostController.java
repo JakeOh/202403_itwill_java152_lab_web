@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
+import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.service.PostService;
 
@@ -77,6 +78,17 @@ public class PostController {
         
         // 포스트 목록 페이지로 리다이렉트.
         return "redirect:/post/list";
+    }
+    
+    @PostMapping("/update")
+    public String update(PostUpdateDto dto) {
+        log.debug("update(dto={})", dto);
+        
+        // 서비스 컴포넌트의 메서드를 호출해서 데이터베이스 테이블 업데이트를 수행.
+        postService.update(dto);
+        
+        // 상세보기 페이지로 리다이렉트.
+        return "redirect:/post/details?id=" + dto.getId();
     }
     
 }
