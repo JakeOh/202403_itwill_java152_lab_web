@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
+import com.itwill.spring2.dto.PostSearchDto;
 import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.repository.Post;
 import com.itwill.spring2.repository.PostDao;
@@ -76,6 +77,16 @@ public class PostService {
         log.debug("update 결과 = {}", result);
         
         return result;
+    }
+    
+    public List<PostListDto> search(PostSearchDto dto) {
+        log.debug("search({})", dto);
+        
+        List<Post> list = postDao.search(dto);
+        
+        return list.stream()
+                .map(PostListDto::fromEntity)
+                .toList();
     }
     
 }
