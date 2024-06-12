@@ -68,4 +68,15 @@ public class PostController {
         return "redirect:/post/list"; // 포스트 목록 페이지로 리다이렉트
     }
     
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name = "id") int id) {
+        log.debug("delete(id={})", id);
+        
+        // 서비스 컴포넌트의 메서드를 호출해서 데이터베이스의 테이블에서 해당 아이디의 글을 삭제.
+        postService.delete(id);
+        
+        // 포스트 목록 페이지로 리다이렉트.
+        return "redirect:/post/list";
+    }
+    
 }
