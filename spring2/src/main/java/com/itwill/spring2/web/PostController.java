@@ -37,12 +37,20 @@ public class PostController {
         // 뷰: /WEB-INF/views/post/list.jsp
     }
     
-    @GetMapping("/details")
+    @GetMapping({ "/details", "/modify" })
+    //-> GET 방식의 "/post/details", "/post/modify" 2개의 요청을 처리하는 메서드.
     public void details(@RequestParam(name = "id") int id, Model model) {
         log.debug("details(id={})", id);
         
+        // 서비스 컴포넌트의 메서드를 호출해서 해당 id의 포스트를 검색(select).
         Post post = postService.read(id);
+        
+        // 뷰에 데이터를 전달하기 위해서 model 객체에 post를 속성으로 추가.
         model.addAttribute("post", post);
+        
+        // 리턴 타입이 void이므로 뷰의 이름은
+        // (1) 요청 주소가 /post/details인 경우 /WEB-INF/views/post/details.jsp
+        // (2) 요청 주소가 /post/modify인 경우 /WEB-INF/views/post/modify.jsp
     }
     
     @GetMapping("/create")
