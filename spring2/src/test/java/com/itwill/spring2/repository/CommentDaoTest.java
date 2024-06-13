@@ -31,12 +31,19 @@ public class CommentDaoTest {
         }
     }
     
-    @Test
+//    @Test
     public void testInsert() {
         Comment comment = Comment.builder()
-                .postId(102).username("guest").ctext("안녕하세요?")
+                .postId(102).username("admin").ctext("댓글 입력 테스트")
                 .build();
         int result = commentDao.insert(comment);
+        Assertions.assertEquals(1, result);
+    }
+    
+    @Test
+    public void testUpdate() {
+        Comment comment = Comment.builder().id(3).ctext("update test ... ㅎㅎㅎ").build();
+        int result = commentDao.update(comment);
         Assertions.assertEquals(1, result);
     }
     

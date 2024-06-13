@@ -14,5 +14,19 @@
         insert into comments (post_id, username, ctext)
         values (#{postId}, #{username}, #{ctext})
     </insert>
+    
+    <update id="update">
+        update comments
+        set ctext = #{ctext}, modified_time = systimestamp
+        where id = #{id}
+    </update>
+    
+    <delete id="deleteById">
+        delete from comments where id = #{id}
+    </delete>
+    
+    <delete id="deleteByPostId">
+        delete from comments where post_id = #{postId}
+    </delete>
 
 </mapper>
