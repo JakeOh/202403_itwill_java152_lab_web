@@ -120,7 +120,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
         </dependency>
-        
+
         <!-- Spring TestContext Framework -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -128,14 +128,22 @@
             <version>${spring-version}</version>
         </dependency>
 
-        <!-- General data-binding functionality for Jackson: works on core streaming API -->
+        <!-- General data-binding functionality for Jackson: works on core
+        streaming API -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-version}</version>
         </dependency>
-        
-        <!-- Spice up your java: Automatic Resource Management, automatic generation of 
+        <!-- Add-on module to support JSR-310 (Java 8 Date & Time API) data types -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+
+        <!-- Spice up your java: Automatic Resource Management, automatic
+        generation of 
         getters, setters, equals, hashCode and toString, and more! -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -143,21 +151,21 @@
             <version>${lombok-version}</version>
             <scope>compile</scope>
         </dependency>
-        
+
         <!-- Sping JDBC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
         </dependency>
-        
+
         <!-- Spring Tx(Transaction) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${spring-version}</version>
         </dependency>
-        
+
         <!-- MyBatis SQL mapper framework -->
         <dependency>
             <groupId>org.mybatis</groupId>
