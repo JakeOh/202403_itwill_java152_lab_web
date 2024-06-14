@@ -19,7 +19,6 @@ import com.itwill.spring2.service.CommentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.proxy.annotation.Post;
 
 @Slf4j
 @RequiredArgsConstructor
