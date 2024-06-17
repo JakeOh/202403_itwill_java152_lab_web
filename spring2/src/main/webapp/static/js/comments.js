@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (btnToggleComment.innerHTML === '댓글 보기') {
             btnToggleComment.innerHTML = '댓글 감추기';
+            // 포스트에 달려 있는 모든 댓글 목록 보여줌.
+            getAllComments();
         } else {
             btnToggleComment.innerHTML = '댓글 보기';
         }
@@ -60,12 +62,62 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.data); // RestController에서 보낸 응답 데이터
             if (response.data === 1) {
                 alert('댓글 1개 등록 성공');
+                document.querySelector('textarea#ctext').value = '';
+                document.querySelector('input#username').value = '';
                 // TODO:
             }
         })
         .catch((error) => {
             console.log(error);
         });
+    }
+    
+    // 포스트에 달려 있는 모든 댓글 목록 가져오기
+    function getAllComments() {
+        // 댓글 목록을 요청하기 위한 포스트 번호
+        const postId = document.querySelector('input#id').value;
+        
+        // 댓글 목록을 요청하기 위한 REST API URI
+        const uri = `../api/comment/all/${postId}`;
+        
+        // Ajax 요청을 보냄.
+        axios
+        .get(uri)
+        .then((response) => {
+            console.log(response.data);
+            // 댓글 목록을 HTML로 작성 -> div#comments 영역에 출력.
+            makeCommentElements(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+    
+    // 댓글 목록(댓글 객체들의 배열)을 아규먼트로 전달받아서 HTML을 작성.
+    function makeCommentElements(data) {
+        // 댓글 목록 HTML이 삽입될 div
+        const divComments = document.querySelector('div#comments');
+        
+        // 댓글 목록 HTML 코드
+        let htmlStr = '';
+        for (let comment of data) {
+            // 댓글 최종 수정 시간
+            const modifiedTime = new Date(comment.modifiedTime).toLocaleString();
+            
+            htmlStr += `
+            <div class="card card-body my-1">
+                <div>
+                    <span>${comment.id}</span>
+                    <span class="fw-bold">${comment.username}</span>
+                    <span class="text-secondary">${modifiedTime}</span>
+                </div>
+                <div>${comment.ctext}</div>
+            </div>
+            `;
+        }
+        
+        // 작성된 HTML 코드를 div 영역에 삽입.
+        divComments.innerHTML = htmlStr;
     }
     
 });
