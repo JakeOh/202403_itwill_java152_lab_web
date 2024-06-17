@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('댓글 1개 등록 성공');
                 document.querySelector('textarea#ctext').value = '';
                 document.querySelector('input#username').value = '';
-                // TODO:
+                // 댓글 목록 갱신
+                getAllComments();
             }
         })
         .catch((error) => {
@@ -106,18 +107,35 @@ document.addEventListener('DOMContentLoaded', () => {
             
             htmlStr += `
             <div class="card card-body my-1">
-                <div>
+                <div style="font-size: 0.825rem;">
                     <span>${comment.id}</span>
                     <span class="fw-bold">${comment.username}</span>
                     <span class="text-secondary">${modifiedTime}</span>
                 </div>
                 <div>${comment.ctext}</div>
+                <div>
+                    <button class="btnDeleteComment btn btn-outline-danger btn-sm"
+                        data-id="${comment.id}">삭제</button>
+                    <button class="btnModifyComment btn btn-outline-primary btn-sm"
+                        data-id="${comment.id}">수정</button>
+                </div>
             </div>
             `;
         }
         
         // 작성된 HTML 코드를 div 영역에 삽입.
         divComments.innerHTML = htmlStr;
+        
+        // 모든 삭제 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
+        const btnDeletes = document.querySelectorAll('button.btnDeleteComment');
+        for (let btn of btnDeletes) {
+            btn.addEventListener('click', (e) => {
+                alert(e.target.getAttribute('data-id'));
+            });
+        }
+        
+        // TOTO: 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
+        
     }
     
 });
