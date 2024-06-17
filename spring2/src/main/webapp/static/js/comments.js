@@ -37,7 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
         // 댓글 작성자 아이디를 찾음.
         const username = document.querySelector('input#username').value;
         
-        console.log(postId, ctext, username);
+        // 댓글 내용, 댓글 작성자가 비어 있는 지 체크
+        if (ctext === '' || username === '') {
+            alert('댓글 내용과 작성자는 반드시 입력하세요.');
+            return; // 이벤트 리스너를 종료
+        }
+        
+        // Ajax 요청에서 보낼 데이터 객체를 생성.
+        /* const data = {
+            postId: postId,
+            ctext: ctext,
+            username: username
+        }; */
+        const data = {postId, ctext, username};
+        console.log(data);
+        
+        // POST 방식의 Ajax 요청을 보냄. 응답 성공/실패 콜백을 등록.
+        axios
+        .post('../api/comment', data)
+        .then((response) => {
+            // console.log(response);
+            console.log(response.data); // RestController에서 보낸 응답 데이터
+            if (response.data === 1) {
+                alert('댓글 1개 등록 성공');
+                // TODO:
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
     
 });
