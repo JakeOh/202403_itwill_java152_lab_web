@@ -20,4 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // 버튼 btnRegisterComment 요소를 찾음.
+    const btnRegisterComment = document.querySelector('button#btnRegisterComment');
+    
+    // 버튼에 클릭 이벤트 리스너를 설정.
+    btnRegisterComment.addEventListener('click', registerComment);
+    
+    // 댓글 등록 이벤트 리스너 콜백(함수):
+    function registerComment() {
+        // 댓글이 달릴 포스트 번호를 찾음.
+        const postId = document.querySelector('input#id').value;
+        
+        // 댓글 내용을 찾음.
+        const ctext = document.querySelector('textarea#ctext').value;
+        
+        // 댓글 작성자 아이디를 찾음.
+        const username = document.querySelector('input#username').value;
+        
+        console.log(postId, ctext, username);
+    }
+    
 });
