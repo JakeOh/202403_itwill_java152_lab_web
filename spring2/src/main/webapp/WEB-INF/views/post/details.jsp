@@ -67,10 +67,28 @@
             
             </div>
         </main>
+        
+        <section>
+            <div class="mt-2 card">
+                <div class="card-header d-inline-flex gap-1">
+                    <!-- 댓글 접기/펼치기 기능 버튼 -->
+                    <button class="btn btn-secondary" id="btnToggleComment">댓글 보기</button>
+                </div>
+                
+                <!-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 -->
+                <div class="card-body collapse" id="collapseComments">
+                    TEST
+                </div>
+            </div>
+        </section>
+        
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
         crossorigin="anonymous"></script>
+    
+    <c:url var="commentsJS" value="/js/comments.js" />
+    <script src="${commentsJS}"></script>
 </body>
 </html>
