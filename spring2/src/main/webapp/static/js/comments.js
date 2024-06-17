@@ -129,13 +129,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // 모든 삭제 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
         const btnDeletes = document.querySelectorAll('button.btnDeleteComment');
         for (let btn of btnDeletes) {
-            btn.addEventListener('click', (e) => {
-                alert(e.target.getAttribute('data-id'));
-            });
+            btn.addEventListener('click', deleteComment);
         }
         
         // TOTO: 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
         
+    }
+    
+    function deleteComment(event) {
+        // 이벤트 리스너 콜백의 아규먼트 event 객체는 target 속성을 가지고 있음.
+        console.log(event.target); // 이벤트가 발생한 요소(타겟)
+        const id = event.target.getAttribute('data-id'); // HTML 요소의 속성 값 찾기
+        
+        // 삭제 여부 확인
+        const result = confirm('댓글을 정말 삭제할까요?');
+        if (!result) { // 사용자가 [취소]를 선택했을 때
+            return; // 함수 종료
+        }
+        
+        // Ajax로 삭제 요청을 보낼 REST API URI
+        const uri = `../api/comment/${id}`;
+        
+        // Ajax 요청을 보냄.
+        axios
+        .delete(uri)
+        .then((response) => {
+            console.log(response.data);
+            if (response.data === 1) {
+                alert(`댓글(${id}) 삭제 성공`);
+                getAllComments(); // 댓글 목록 갱신
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
     
 });
