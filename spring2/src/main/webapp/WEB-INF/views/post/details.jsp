@@ -111,12 +111,16 @@
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>댓글 업데이트 할 곳...</p>
+                        <!-- 수정할 댓글 아이디(번호) -->
+                        <input class="d-none" id="modalCommentId" />
+                        <!-- 수정할 댓글 내용 -->
+                        <textarea class="form-control" id="modalCommentText"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary"
                             data-bs-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-outline-primary">저장</button>
+                        <button type="button" class="btn btn-outline-primary"
+                            id="btnUpdateComment">저장</button>
                     </div>
                 </div>
             </div>

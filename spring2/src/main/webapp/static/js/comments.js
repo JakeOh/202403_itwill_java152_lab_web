@@ -31,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 부트스트랩 모달(다이얼로그) 객체 생성.
     const commentModal = new bootstrap.Modal('div#commentModal', {backdrop: true});
     
+    // 모달의 저장 버튼을 찾고, 클릭 이벤트 리스너를 설정.
+    const btnUpdateComment = document.querySelector('button#btnUpdateComment');
+    btnUpdateComment.addEventListener('click', updateComment);
+    
     /*-------------------------------------------------*/
     
     // 댓글 등록 이벤트 리스너 콜백(함수):
@@ -140,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
         const btnModifies = document.querySelectorAll('button.btnModifyComment');
         for (let btn of btnModifies) {
-            btn.addEventListener('click', () => { commentModal.show(); });
+            btn.addEventListener('click', showCommentModal);
         }
     }
     
@@ -173,4 +177,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    function showCommentModal(event) {
+        // 이벤트 타겟(수정 버튼)의 data-id 속성 값을 읽음.
+        const id = event.target.getAttribute('data-id');
+        
+        // Ajax 요청을 보내서 댓글 아이디로 검색.
+        const uri = `../api/comment/${id}`;
+        axios
+        .get(uri)
+        .then((response) => {
+            // console.log(response);
+            console.log(response.data);
+            // console.log(response.data.id);
+            
+            // 모달의 input(댓글 번호), textarea(댓글 내용)의 value를 채움.
+            document.querySelector('input#modalCommentId').value = id;
+            document.querySelector('textarea#modalCommentText').value = response.data.ctext;
+            
+            // 모달을 보여줌.
+            commentModal.show();
+        })
+        .catch((error) => console.log(error));
+    }
+    
+    function updateComment() {
+        console.log('TODO: update ajax');
+        commentModal.hide(); // 모달(다이얼로그)을 감춤.
+    }
 });
