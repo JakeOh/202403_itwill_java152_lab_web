@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 버튼에 클릭 이벤트 리스너를 설정.
     btnRegisterComment.addEventListener('click', registerComment);
     
+    // 부트스트랩 모달(다이얼로그) 객체 생성.
+    const commentModal = new bootstrap.Modal('div#commentModal', {backdrop: true});
+    
+    /*-------------------------------------------------*/
+    
     // 댓글 등록 이벤트 리스너 콜백(함수):
     function registerComment() {
         // 댓글이 달릴 포스트 번호를 찾음.
@@ -132,8 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', deleteComment);
         }
         
-        // TOTO: 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
-        
+        // 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
+        const btnModifies = document.querySelectorAll('button.btnModifyComment');
+        for (let btn of btnModifies) {
+            btn.addEventListener('click', () => { commentModal.show(); });
+        }
     }
     
     function deleteComment(event) {
