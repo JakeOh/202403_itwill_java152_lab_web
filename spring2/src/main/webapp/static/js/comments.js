@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    // 댓글 삭제 버튼의 클릭 이벤트 리스너
     function deleteComment(event) {
         // 이벤트 리스너 콜백의 아규먼트 event 객체는 target 속성을 가지고 있음.
         console.log(event.target); // 이벤트가 발생한 요소(타겟)
@@ -177,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // 댓글 수정 버튼의 클릭 이벤트 리스너
     function showCommentModal(event) {
         // 이벤트 타겟(수정 버튼)의 data-id 속성 값을 읽음.
         const id = event.target.getAttribute('data-id');
