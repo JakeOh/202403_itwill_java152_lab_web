@@ -200,8 +200,30 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => console.log(error));
     }
     
+    // 댓글 업데이트 모달의 [저장] 버튼의 클릭 이벤트 리스너
     function updateComment() {
-        console.log('TODO: update ajax');
-        commentModal.hide(); // 모달(다이얼로그)을 감춤.
+        // 업데이트할 댓글 번호
+        const id = document.querySelector('input#modalCommentId').value;
+        
+        // 업데이트할 댓글 내용
+        const ctext = document.querySelector('textarea#modalCommentText').value;
+        if (ctext === '') {
+            alert('업데이트할 댓글 내용을 입력하세요.');
+            return; // 이벤트 리스너를 종료
+        }
+        
+        // 댓글 업데이트 요청 REST API URI
+        const uri = `../api/comment/${id}`;
+        
+        // Ajax 요청
+        axios
+        .put(uri, { ctext }) // { ctext } = {ctext: ctext}, {id, ctext} = {id: id, ctext: ctext}
+        .then((response) => {
+            console.log(response);
+            
+            getAllComments(); // 댓글 목록 갱신
+            commentModal.hide(); // 모달 숨김
+        })
+        .catch((error) => console.log(error));
     }
 });
