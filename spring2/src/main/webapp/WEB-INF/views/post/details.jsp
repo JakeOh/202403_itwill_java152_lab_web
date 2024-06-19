@@ -58,11 +58,14 @@
                 </div>
                 
                 <div class="card-footer">
-                    <c:url var="postModifyPage" value="/post/modify">
-                        <c:param name="id" value="${post.id}" />
-                    </c:url>
-                    <a class="btn btn-outline-primary"
-                        href="${postModifyPage}">수정하기</a>
+                    <!-- 로그인 사용자 아이디와 작성자 아이디가 같은 경우에만 수정하기 버튼을 보여줌 -->
+                    <c:if test="${signedInUser eq post.author}">
+                        <c:url var="postModifyPage" value="/post/modify">
+                            <c:param name="id" value="${post.id}" />
+                        </c:url>
+                        <a class="btn btn-outline-primary"
+                            href="${postModifyPage}">수정하기</a>
+                    </c:if>
                 </div>
             
             </div>
@@ -84,9 +87,8 @@
                                 <!-- 댓글 입력 -->
                                 <textarea class="form-control" rows="3"
                                     id="ctext" placeholder="댓글 내용"></textarea>
-                                <!-- 댓글 작성자 아이디: 
-                                TODO: 로그인한 사용자의 아이디로 설정 -->
-                                <input id="username" placeholder="댓글 작성자" />
+                                <!-- 댓글 작성자 아이디를 로그인한 사용자의 아이디로 설정 -->
+                                <input class="d-none" id="username" value="${signedInUser}" />
                             </div>
                             <div class="col-2">
                                 <button class="btn btn-outline-success" 
@@ -135,6 +137,12 @@
     
     <!-- Axio JS 라이브러리 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+    // 세션에 저장된 로그인 사용자 아이디를 자바스크립트 변수에 저장
+    // -> comment.js 파일에서 이용할 수 있도록 하기 위해.
+    const signedInUser = '${signedInUser}';
+    </script>
     
     <!-- 우리가 만드는 JS 파일 -->
     <c:url var="commentsJS" value="/js/comments.js" />

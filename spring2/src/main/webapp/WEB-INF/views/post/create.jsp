@@ -35,8 +35,9 @@
                                 rows="5" name="content" placeholder="내용 입력" required></textarea>
                         </div>
                         <div class="mt-2">
-                            <input class="form-control" 
-                                type="text" name="author" placeholder="작성자" required />
+                            <!-- 로그인 사용자 아이디를 author 입력 필드에 설정. -->
+                            <input class="d-none" 
+                                type="text" name="author" value="${signedInUser}" readonly required />
                         </div>
                         <div class="mt-2">
                             <input class="form-control btn btn-outline-success" type="submit" value="저장" />

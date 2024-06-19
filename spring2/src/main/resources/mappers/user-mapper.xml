@@ -14,5 +14,11 @@
         insert into users (userid, password, email)
         values (#{userid}, #{password}, #{email})
     </insert>
+    
+    <!-- 로그인 -->
+    <select id="selectByUseridAndPassword" resultType="User">
+        select * from users
+        where userid = #{userid} and password = #{password}
+    </select>
 
 </mapper>
