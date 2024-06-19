@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-body">
                     <form id="modifyForm">
-                        <div class="mt-2">
+                        <div class="d-none">
                             <label for="id" class="form-label">번호</label>
                             <input id="id" class="form-control" type="text"
                                 name="id" value="${post.id}" readonly />
@@ -39,19 +39,20 @@
                             <textarea id="content" class="form-control" 
                                 name="content" rows="5">${post.content}</textarea>
                         </div>
-                        <div class="mt-2">
+                        <div class="d-none">
                             <label for="author" class="form-label">작성자</label>
                             <input id="author" class="form-control" type="text"
                                 value="${post.author}" readonly />
                         </div>
                     </form>
                 </div>
-                
-                <div class="card-footer">
-                    <button id="btnDelete" class="btn btn-outline-danger">삭제</button>
-                    <button id="btnUpdate" class="btn btn-outline-success">업데이트</button>
-                </div>
-                
+                <!-- 로그인 사용자 아이디와 글 작성자가 같은 경우에만 버튼을 보여줌. -->
+                <c:if test="${signedInUser eq post.author}">
+                    <div class="card-footer">
+                        <button id="btnDelete" class="btn btn-outline-danger">삭제</button>
+                        <button id="btnUpdate" class="btn btn-outline-success">업데이트</button>
+                    </div>
+                </c:if>
             </div>
         </main>
     </div>
