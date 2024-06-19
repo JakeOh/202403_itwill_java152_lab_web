@@ -8,5 +8,11 @@
     <select id="selectByUserid" resultType="User">
         select * from users where userid = #{userid}
     </select>
+    
+    <!-- 회원 가입 -->
+    <insert id="insert">
+        insert into users (userid, password, email)
+        values (#{userid}, #{password}, #{email})
+    </insert>
 
 </mapper>

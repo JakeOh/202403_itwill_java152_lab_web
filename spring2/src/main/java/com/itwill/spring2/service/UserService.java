@@ -2,6 +2,7 @@ package com.itwill.spring2.service;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.spring2.dto.UserCreateDto;
 import com.itwill.spring2.repository.User;
 import com.itwill.spring2.repository.UserDao;
 
@@ -25,6 +26,15 @@ public class UserService {
         } else { // userid가 일치하는 레코드가 있을 때(아이디가 중복된 경우)
             return false;
         }
+    }
+    
+    // 회원 가입 서비스
+    public int create(UserCreateDto dto) {
+        log.debug("create({})", dto);
+        
+        int result = userDao.insert(dto.toEntity());
+        
+        return result;
     }
     
 }

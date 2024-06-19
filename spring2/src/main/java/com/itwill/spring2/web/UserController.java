@@ -3,10 +3,12 @@ package com.itwill.spring2.web;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.spring2.dto.UserCreateDto;
 import com.itwill.spring2.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,15 @@ public class UserController {
     @GetMapping("/signup") // GET 방식의 /user/signup 요청을 처리하는 컨트롤러 메서드 
     public void signup() {
         log.debug("GET signup()");
+    }
+    
+    @PostMapping("/signup") // POST 방식의 /user/signup 요청을 처리하는 컨트롤러 메서드
+    public String signup(UserCreateDto dto) {
+        log.debug("POST signup({})", dto);
+        
+        userService.create(dto);
+        
+        return "redirect:/"; // 홈페이지로 이동 or 로그인 페이지로 이동.
     }
     
     // 사용자 아이디 중복체크 REST 컨트롤러
