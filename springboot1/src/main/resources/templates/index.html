@@ -7,7 +7,7 @@
     <body>
         <!-- fragment expression: 
             templates/layout/fragments.html 파일에서 선언된 myHeader 프래그먼트 끼워넣기. 
-            div 태그 대신 프래그먼트 태그로 교체(replace)가 되는 방식. -->
+            div 태그 대신 프래그먼트로 교체(replace)되는 방식. -->
         <div th:replace="~{/layout/fragments :: myHeader('Home Page')}"></div>
         
         <!-- fragment expression:
@@ -16,6 +16,25 @@
         <div th:insert="~{/layout/fragments :: navigation}"></div>
     
         <h1>첫번째 Spring Boot 프로젝트</h1>
+        <!-- thymeleaf variable expression -->
         <h2 th:text="${currentTime}">현재 시간</h2>
+        <h2 th:text="${book}"></h2>
+        <div>
+            ID: <span th:text="${book.id}"></span>
+            <br />
+            제목: <span th:text=${book.title}></span>
+            <br />
+            저자: <span th:text="|${book.author.firstName}  ${book.author.lastName}|"></span>
+        </div>
+        
+        <div th:object="${book}">
+            <!-- selection expression -->
+            ID: <span th:text="*{id}"></span>
+            <br />
+            TITLE: <span th:text="*{title}"></span>
+            <br/>
+            AUTHOR: <span th:text="|*{author.firstName} *{author.lastName}|"></span>
+        </div>
+        
     </body>
 </html>
