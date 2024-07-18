@@ -1,6 +1,7 @@
 package com.itwill.springboot1.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,32 @@ public class HomeController {
         return "index";
         //-> 뷰의 이름을 리턴.
         //-> src/main/resources/templates/리턴값.html
+    }
+    
+    @GetMapping("/book/list")
+    public void bookList(Model model) {
+        // return 타입이 void인 경우 뷰의 이름은 요청 주소와 같음.
+        log.info("bookList()");
+        
+        // 도서 목록 더미 데이터를 저장하기 위한 리스트.
+        ArrayList<Book> list = new ArrayList<>();
+        
+        // 더미 데이터 5개를 리스트에 저장.
+        for (int i = 1; i <= 5; i++) {
+            Book book = Book.builder()
+                    .id(i)
+                    .title("Title-" + i)
+                    .author(Author.builder().firstName("Name-" + i).lastName("LastName").build())
+                    .build();
+            list.add(book);
+        }
+        
+        Book b = Book.builder().id(10).title("종의 기원").build(); // author = null
+        list.add(b);
+        
+        // 도서 목록을 뷰에 전달.
+        model.addAttribute("bookList", list);
+        
     }
 
 }

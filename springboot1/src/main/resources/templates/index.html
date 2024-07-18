@@ -28,13 +28,23 @@
         </div>
         
         <div th:object="${book}">
-            <!-- selection expression -->
+            <!-- thymeleaf selection expression -->
             ID: <span th:text="*{id}"></span>
             <br />
             TITLE: <span th:text="*{title}"></span>
             <br/>
             AUTHOR: <span th:text="|*{author.firstName} *{author.lastName}|"></span>
         </div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <!-- thymeleaf link(URL) expression: 
+                        JSTL의 c:url 태그와 비슷한 기능. -->
+                    <a th:href="@{/book/list}">도서 목록</a>
+                </li>
+            </ul>
+        </nav>
         
     </body>
 </html>
