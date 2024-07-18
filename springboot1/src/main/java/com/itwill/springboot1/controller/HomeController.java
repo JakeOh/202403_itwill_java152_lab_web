@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController {
     
-    @GetMapping("/") // context path로 들어오는 GET 방식 요청을 처리하는 메서드
+    @GetMapping("/") // context path(/)로 들어오는 GET 방식 요청을 처리하는 메서드
     public String home(Model model) {
         log.info("home()");
         

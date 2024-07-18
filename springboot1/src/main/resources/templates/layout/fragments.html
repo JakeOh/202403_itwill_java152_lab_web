@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        
+        <!-- 다른 HTML 파일들에서 공통으로 사용할 프래그먼트를 정의 -->
+        <header th:fragment="myHeader(title)">
+            <h1 th:text="${title}">HEADER</h1>
+        </header>
+        
+        <nav th:fragment="navigation">
+            <ul>
+                <li>Home</li>
+                <li>두번째 페이지</li>
+                <li>세번째 페이지</li>
+            </ul>
+        </nav>
+        
+    </body>
+</html>

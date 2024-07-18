@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <title>Spring Boot 1</title>
     </head>
     <body>
+        <!-- fragment expression: 
+            templates/layout/fragments.html 파일에서 선언된 myHeader 프래그먼트 끼워넣기. 
+            div 태그 대신 프래그먼트 태그로 교체(replace)가 되는 방식. -->
+        <div th:replace="~{/layout/fragments :: myHeader('Home Page')}"></div>
+        
+        <!-- fragment expression:
+            templates/layout/fragment.html 파일에서 선언된 navigation 프래그먼트 끼워넣기.
+            div 안에 프래그먼트를 삽입(insert)하는 방식. -->
+        <div th:insert="~{/layout/fragments :: navigation}"></div>
+    
         <h1>첫번째 Spring Boot 프로젝트</h1>
         <h2 th:text="${currentTime}">현재 시간</h2>
     </body>
