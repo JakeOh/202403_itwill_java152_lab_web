@@ -4,6 +4,7 @@ package com.itwill.springboot2.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 //import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class EmployeeRepositoryTest {
     }
     
     // select * from emp
-    @Test
+    //@Test
     public void findAllTest() {
         List<Employee> list = empRepo.findAll();
         assertThat(list.size()).isEqualTo(14);
@@ -37,6 +38,20 @@ public class EmployeeRepositoryTest {
         for (Employee e : list) {
             System.out.println(e);
         }
+    }
+    
+    @Test
+    public void findByTest() {
+        // 사번이 테이블에 있는 경우:
+        Optional<Employee> emp1 = empRepo.findById(7788);
+        Employee scott = emp1.get();
+        assertThat(scott.getEname()).isEqualTo("SCOTT");
+        log.info("scott: {}", scott);
+        
+        // 사번이 테이블에 없는 경우:
+        Optional<Employee> emp2 = empRepo.findById(1000);
+        Employee none = emp2.orElseGet(() -> null);
+        assertThat(none).isNull();
     }
     
 }
