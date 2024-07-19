@@ -43,6 +43,12 @@
                         JSTL의 c:url 태그와 비슷한 기능. -->
                     <a th:href="@{/book/list}">도서 목록</a>
                 </li>
+                <li>
+                    <!-- 질의문자열(query string)을 포함하는 URL 작성 방법: -->
+                    <!-- <a th:href="@{/book/details?id=1}">도서1 상세 페이지</a> -->
+                    <a th:href="@{/book/details(id=1)}">도서1 상세 페이지</a>
+                    <!-- @{/book/details(id=1, title='종의 기원')} -->
+                </li>
             </ul>
         </nav>
         

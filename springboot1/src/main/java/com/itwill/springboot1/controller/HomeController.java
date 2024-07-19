@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.springboot1.dto.Author;
 import com.itwill.springboot1.dto.Book;
@@ -63,4 +64,19 @@ public class HomeController {
         
     }
 
+    @GetMapping("/book/details")
+    public void bookDetails(@RequestParam(name = "id") int id, Model model) {
+        // 요청 파라미터 id 값을 찾고, 해당 id를 갖는 Book 객체를 만듦.
+        // Book 객체를 모델에 속성(attr)으로 저장, 뷰로 전달.
+        
+        log.info("bookDetails(id={})", id);
+        
+        Book book = Book.builder()
+                .id(id)
+                .title("종의 기원")
+                .author(Author.builder().firstName("찰스").lastName("다윈").build())
+                .build();
+        model.addAttribute("book", book);
+    }
+    
 }

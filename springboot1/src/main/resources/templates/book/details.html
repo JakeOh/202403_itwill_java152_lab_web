@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Spring Boot 1</title>
+    </head>
+    <body>
+        <header th:replace="~{/layout/fragments :: myHeader('도서 상세 페이지')}"></header>
+        
+        <div th:object="${book}">
+            ID: <span th:text="*{id}"></span>
+            <br/>
+            TITLE: <span th:text="*{title}"></span>
+            <br/>
+            AUTHOR: <span th:text="*{author != null} ? *{author.firstName} : 'Unknown'"></span>
+        </div>
+    </body>
+</html>
