@@ -49,6 +49,11 @@
                     <a th:href="@{/book/details(id=1)}">도서1 상세 페이지</a>
                     <!-- @{/book/details(id=1, title='종의 기원')} -->
                 </li>
+                <li>
+                    <!-- path variable을 포함하는 URL expression 작성 방법 -->
+                    <!-- <a th:href="@{/book/details/} + 2">도서2 상세 페이지</a> -->
+                    <a th:href="@{/book/details/{id}(id=2)}">도서2 상세 페이지</a>
+                </li>
             </ul>
         </nav>
         
