@@ -6,7 +6,7 @@ import com.itwill.springboot2.domain.Employee;
 
 /*
  * Repository<T, ID>
- * |__ CrudRepository<T, ID>, PagingAndSortRepository<T, ID>
+ * |__ CrudRepository<T, ID>, PagingAndSortingRepository<T, ID>
  *     |__ JpaRepository<T, ID>
  * 
  * T: Entity 클래스, ID: Entity 클래스의 @Id 필드 타입
