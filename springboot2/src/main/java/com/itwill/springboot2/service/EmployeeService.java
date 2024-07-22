@@ -25,4 +25,10 @@ public class EmployeeService {
         return empRepo.findAll();
     }
     
+    public Employee read(Integer id) {
+        log.info("read(id={})", id);
+        
+        return empRepo.findById(id).orElseThrow();
+    }
+    
 }

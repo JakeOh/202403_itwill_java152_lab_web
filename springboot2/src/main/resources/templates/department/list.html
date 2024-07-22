@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sprint Boot2</title>
+    </head>
+    <body>
+        <div th:replace="~{/layout/fragments :: pageHeader('부서 목록 페이지')}"></div>
+        
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>부서번호</th>
+                        <th>부서이름</th>
+                        <th>위치</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dept : ${departments}" th:object="${dept}">
+                        <td>
+                            <a th:href="@{/department/details/{id}(id=*{id})}"
+                                th:text="*{id}"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/department/details/{id}(id=*{id})}"
+                                th:text="*{dname}"></a>
+                        </td>
+                        <td th:text="*{location}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
+    </body>
+</html>

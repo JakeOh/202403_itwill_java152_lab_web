@@ -5,42 +5,49 @@
         <title>Spring Boot 2</title>
     </head>
     <body>
-        <div th:replace="~{/layout/fragments :: pageHeader('직원 목록 페이지')}"></div>
+        <div th:replace="~{/layout/fragments :: pageHeader('직원 상세 페이지')}"></div>
         
         <main>
             <table>
-                <thead>
+                <tbody th:object="${employee}">
                     <tr>
                         <th>사번</th>
-                        <th>이름</th>
-                        <th>직무</th>
-                        <th>매니저</th>
-                        <th>입사일</th>
-                        <th>급여</th>
-                        <th>수당</th>
-                        <th>부서</th>
+                        <td th:text="*{id}"></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="emp : ${employees}" th:object="${emp}">
-                        <td>
-                            <a th:href="@{/employee/details/{id}(id=*{id})}"
-                                th:text="*{id}"></a>
-                        </td>
-                        <td>
-                            <a th:href="@{/employee/details/{id}(id=*{id})}"
-                                th:text="*{ename}"></a>
-                        </td>
+                    <tr>
+                        <th>이름</th>
+                        <td th:text="*{ename}"></td>
+                    </tr>
+                    <tr>
+                        <th>직무</th>
                         <td th:text="*{job}"></td>
+                    </tr>
+                    <tr>
+                        <th>매니저</th>
                         <td>
                             <th:block th:if="*{manager != null}">
                                 <a th:href="@{/employee/details/{id}(id=*{manager.id})}"
                                     th:text="*{manager.ename}"></a>
                             </th:block>
+                            <th:block th:if="*{manager == null}">
+                                ---
+                            </th:block>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>입사날짜</th>
                         <td th:text="*{hiredate}"></td>
+                    </tr>
+                    <tr>
+                        <th>급여</th>
                         <td th:text="*{salary}"></td>
+                    </tr>
+                    <tr>
+                        <th>수당</th>
                         <td th:text="*{commission}"></td>
+                    </tr>
+                    <tr>
+                        <th>부서</th>
                         <td>
                             <a th:href="@{/department/details/{id}(id=*{department.id})}"
                                 th:text="*{department.dname}"></a>
