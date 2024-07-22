@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="pageHeader(title)">
+        <header>
+            <h1 th:text="${title}"></h1>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a th:href="@{/}">홈</a>
+                </li>
+                <li>
+                    <a th:href="@{/employee/list}">직원 목록</a>
+                </li>
+                <li>
+                    <a th:href="@{/department/list}">부서 목록</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</html>
