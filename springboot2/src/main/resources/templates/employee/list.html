@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Spring Boot 2</title>
+    </head>
+    <body>
+        <div th:replace="~{/layout/fragments :: pageHeader('직원 목록 페이지')}"></div>
+        
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>사번</th>
+                        <th>이름</th>
+                        <th>직무</th>
+                        <th>매니저</th>
+                        <th>입사일</th>
+                        <th>급여</th>
+                        <th>수당</th>
+                        <th>부서</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="emp : ${employees}" th:object="${emp}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{ename}"></td>
+                        <td th:text="*{job}"></td>
+                        <td>
+                            <th:block th:if="*{manager != null}">
+                                <a th:text="*{manager.ename}"></a>
+                            </th:block>
+                        </td>
+                        <td th:text="*{hiredate}"></td>
+                        <td th:text="*{salary}"></td>
+                        <td th:text="*{commission}"></td>
+                        <td th:text="*{department.dname}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
