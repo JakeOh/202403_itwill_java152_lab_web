@@ -4,7 +4,10 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,13 +33,19 @@ public class Employee {
     
     private LocalDate hireDate; // column: hire_date
     
-    private String jobId;
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "JOB_ID")
+    private Job job;
     
     private Double salary;
     
     private Double commissionPct; // column: commission_pct
     
-    private Integer managerId;
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANAGER_ID")
+    private Employee manager;
     
     private Integer departmentId;
 }

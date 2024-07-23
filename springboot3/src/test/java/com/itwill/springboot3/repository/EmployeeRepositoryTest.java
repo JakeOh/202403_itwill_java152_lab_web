@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.springboot3.domain.Employee;
 
@@ -33,7 +34,7 @@ public class EmployeeRepositoryTest {
          */
     }
     
-    @Test
+//    @Test
     public void testFindAll() {
         // employees 테이블 전체 검색 테스트:
         long count = empRepo.count();
@@ -41,6 +42,20 @@ public class EmployeeRepositoryTest {
         
         List<Employee> list = empRepo.findAll();
         log.info("employees[0]={}", list.get(0));
+    }
+    
+    @Transactional
+    @Test
+    public void testFindById() {
+        // 1. EmployeeRepository.findById() 메서드 테스트
+        // 2. Employees 테이블 - Jobs 테이블 간의 관계 테스트(JOB_ID - JOB_ID)
+        // 3. Employees 테이블 - Employees 테이블 간의 관계 테스트(MANAGER_ID - EMPLOYEE_ID)
+        
+        // 테이블에 id(사번)가 존재하는 경우:
+        Employee emp = empRepo.findById(101).orElseThrow();
+        log.info("emp={}", emp);
+        log.info("emp.job={}", emp.getJob());
+        log.info("emp.manager={}", emp.getManager());
     }
     
 }
