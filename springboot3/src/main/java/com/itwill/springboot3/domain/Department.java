@@ -1,7 +1,5 @@
 package com.itwill.springboot3.domain;
 
-import com.itwill.springboot3.repository.Location;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
