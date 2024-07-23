@@ -47,5 +47,8 @@ public class Employee {
     @JoinColumn(name = "MANAGER_ID")
     private Employee manager;
     
-    private Integer departmentId;
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
 }
