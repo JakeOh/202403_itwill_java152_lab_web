@@ -54,4 +54,21 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 입사날짜가 날짜 범위 안에 있는 직원들의 정보(where hire_date between ?1 and ?2)
     List<Employee> findByHireDateBetween(LocalDate start, LocalDate end);
     
+    // 부서 이름으로 직원 검색
+    List<Employee> findByDepartmentDepartmentName(String name);
+    
+    // 근무 도시 이름으로 직원 검색
+    List<Employee> findByDepartmentLocationCity(String city);
+    
+    // 대소문자 구분없이 성(lastName) 또는 이름(firstName)에 문자열이 포함된 직원 찾기:
+    List<Employee> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstName, String lastName);
+    
+    
+    // JPQL(Java Persistence Query Language)
+    // JPA에서 사용하는 "객체지향(object-oriented)" 쿼리 문법.
+    // 테이블 이름과 테이블의 컬럼 이름으로 쿼리 문장을 작성하는 것이 아니라,
+    // 엔터티 객체 이름과 엔터티 필드 이름으로 쿼리를 작성하는 문법.
+    // alias(별명)을 반드시 사용해야 함.
+    // 엔터티 이름과 필드 이름은 대소문자를 구분.
+    
 }

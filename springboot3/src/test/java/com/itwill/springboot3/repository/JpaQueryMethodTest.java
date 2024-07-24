@@ -31,8 +31,11 @@ public class JpaQueryMethodTest {
 //        list = empRepo.findBySalaryBetween(10_000., 15_000.);
 //        list = empRepo.findByHireDateLessThan(LocalDate.of(2003, 1, 1));
 //        list = empRepo.findByHireDateGreaterThan(LocalDate.of(2007, 5, 21));
-        list = empRepo.findByHireDateBetween(LocalDate.of(2007, 1, 1), 
-                LocalDate.of(2007, 12, 31));
+//        list = empRepo.findByHireDateBetween(LocalDate.of(2007, 1, 1), 
+//                LocalDate.of(2007, 12, 31));
+//        list = empRepo.findByDepartmentDepartmentName("IT");
+//        list = empRepo.findByDepartmentLocationCity("Seattle");
+        list = empRepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase("te", "te");
         
         list.forEach(System.out::println);
     }
