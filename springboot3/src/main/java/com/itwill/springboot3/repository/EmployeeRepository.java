@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.itwill.springboot3.domain.Employee;
 
@@ -70,5 +72,23 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 엔터티 객체 이름과 엔터티 필드 이름으로 쿼리를 작성하는 문법.
     // alias(별명)을 반드시 사용해야 함.
     // 엔터티 이름과 필드 이름은 대소문자를 구분.
+    
+    @Query("select e from Employee e "
+            + "where upper(e.firstName) like upper('%' || ?1 || '%') "
+            + "or upper(e.lastName) like upper('%' || ?2 || '%')")
+    List<Employee> findByName(String firtName, String lastName);
+    
+    @Query("select e from Employee e "
+            + "where upper(e.firstName) like upper('%' || :keyword || '%') "
+            + "or upper(e.lastName) like upper('%' || :keyword || '%')")
+    List<Employee> findByName2(@Param("keyword") String name);
+    
+    // 부서 이름으로 검색
+    @Query("select e from Employee e where e.department.departmentName = :dname")
+    List<Employee> findByDeptName(@Param("dname") String deptName);
+    
+    // 특정 도시(예: Seattle)에 근무하는 직원들 검색
+    
+    // 특정 국가(예: Canada)에 근무하는 직원들 검색
     
 }

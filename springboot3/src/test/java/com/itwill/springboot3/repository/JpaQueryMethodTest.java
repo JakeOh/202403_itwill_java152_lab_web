@@ -35,7 +35,10 @@ public class JpaQueryMethodTest {
 //                LocalDate.of(2007, 12, 31));
 //        list = empRepo.findByDepartmentDepartmentName("IT");
 //        list = empRepo.findByDepartmentLocationCity("Seattle");
-        list = empRepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase("te", "te");
+//        list = empRepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase("te", "te");
+//        list = empRepo.findByName("tE", "Te");
+//        list = empRepo.findByName2("te");
+        list = empRepo.findByDeptName("IT");
         
         list.forEach(System.out::println);
     }
