@@ -1,5 +1,6 @@
 package com.itwill.springboot3.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,14 @@ public class JpaQueryMethodTest {
 //        list = empRepo.findByFirstNameContaining("te");
 //        list = empRepo.findByFirstNameLike("%te%");
 //        list = empRepo.findByFirstNameContainingIgnoreCase("Te");
-        list = empRepo.findByFirstNameContainingIgnoreCaseOrderByFirstNameDesc("TE");
+//        list = empRepo.findByFirstNameContainingIgnoreCaseOrderByFirstNameDesc("TE");
+//        list = empRepo.findBySalaryGreaterThan(10_000.0);
+//        list = empRepo.findBySalaryLessThan(10_000.);
+//        list = empRepo.findBySalaryBetween(10_000., 15_000.);
+//        list = empRepo.findByHireDateLessThan(LocalDate.of(2003, 1, 1));
+//        list = empRepo.findByHireDateGreaterThan(LocalDate.of(2007, 5, 21));
+        list = empRepo.findByHireDateBetween(LocalDate.of(2007, 1, 1), 
+                LocalDate.of(2007, 12, 31));
         
         list.forEach(System.out::println);
     }

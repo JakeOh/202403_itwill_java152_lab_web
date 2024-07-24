@@ -1,5 +1,6 @@
 package com.itwill.springboot3.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,5 +34,24 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     // 이름에 포함된 단어로 검색, 단어 대/소문자 구분 없이 검색, 정렬 순서는 이름 내림차순.
     // select * from employees where upper(first_name) like upper(?) order by first_name desc
     List<Employee> findByFirstNameContainingIgnoreCaseOrderByFirstNameDesc(String keyword);
+    
+    // 급여가 어떤 값을 초과하는 직원들의 정보
+    // select * from employees where salary > ?
+    List<Employee> findBySalaryGreaterThan(double salary);
+    
+    // 급여가 어떤 값 미만인 직원들의 정보(where salary < ?)
+    List<Employee> findBySalaryLessThan(double salary);
+    
+    // 급여가 어떤 범위 안에 있는 직원들의 정보(where salary between ?1 and ?2)
+    List<Employee> findBySalaryBetween(Double start, Double end);
+    
+    // 입사날짜가 특정 날짜 이전인 직원들의 정보(where hire_date < ?)
+    List<Employee> findByHireDateLessThan(LocalDate date);
+    
+    // 입사날짜가 특정 날짜 이후인 직원들의 정보(where hire_date > ?)
+    List<Employee> findByHireDateGreaterThan(LocalDate date);
+    
+    // 입사날짜가 날짜 범위 안에 있는 직원들의 정보(where hire_date between ?1 and ?2)
+    List<Employee> findByHireDateBetween(LocalDate start, LocalDate end);
     
 }
