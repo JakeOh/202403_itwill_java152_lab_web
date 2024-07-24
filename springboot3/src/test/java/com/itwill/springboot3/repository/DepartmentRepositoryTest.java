@@ -31,7 +31,7 @@ public class DepartmentRepositoryTest {
         assertThat(count).isEqualTo(27L);
         
         List<Department> departments = deptRepo.findAll();
-        departments.forEach(System.out::println);
+        departments.forEach(System.out::println); // (x) -> System.out.println(x)
     }
     
     @Transactional
