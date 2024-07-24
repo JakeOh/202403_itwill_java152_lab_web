@@ -88,7 +88,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     List<Employee> findByDeptName(@Param("dname") String deptName);
     
     // 특정 도시(예: Seattle)에 근무하는 직원들 검색
+    @Query("select e from Employee e "
+            + "where e.department.location.city = :city")
+    List<Employee> findByCity(@Param("city") String city);
     
     // 특정 국가(예: Canada)에 근무하는 직원들 검색
+    @Query("select e from Employee e "
+            + "where e.department.location.country.countryName = :country")
+    List<Employee> findByCountry(String country);
     
 }

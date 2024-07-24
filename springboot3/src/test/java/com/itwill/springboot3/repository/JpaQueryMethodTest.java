@@ -38,7 +38,9 @@ public class JpaQueryMethodTest {
 //        list = empRepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase("te", "te");
 //        list = empRepo.findByName("tE", "Te");
 //        list = empRepo.findByName2("te");
-        list = empRepo.findByDeptName("IT");
+//        list = empRepo.findByDeptName("IT");
+//        list = empRepo.findByCity("Seattle");
+        list = empRepo.findByCountry("Canada");
         
         list.forEach(System.out::println);
     }
