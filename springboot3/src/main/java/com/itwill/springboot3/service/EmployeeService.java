@@ -31,6 +31,7 @@ public class EmployeeService {
         Page<Employee> page = empRepo.findAll(pageable);
         log.info("hasPrevious = {}", page.hasPrevious()); // 이전 페이지가 있는 지 여부
         log.info("hasNext = {}", page.hasNext()); // 다음 페이지가 있는 지 여부
+        log.info("getNumber = {}", page.getNumber()); // 현재 Slice(페이지) 번호
         log.info("getTotalPages = {}", page.getTotalPages()); // 전체 페이지 개수
         
         // Page<Employee> 타입을 Page<EmployeeListItemDto> 타입으로 변환해서 리턴.
