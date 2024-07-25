@@ -1,12 +1,11 @@
 package com.itwill.springboot3.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.springboot3.domain.Employee;
 import com.itwill.springboot3.dto.EmployeeListItemDto;
@@ -21,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmployeeService {
     private final EmployeeRepository empRepo;
     
+    @Transactional(readOnly = true) // 엔터티 객체들을 읽기 전용으로 검색.
     public Page<EmployeeListItemDto> read(int pageNo, Sort sort) {
         log.info("read(pageNo={}, sort={})", pageNo, sort);
         
@@ -39,6 +39,7 @@ public class EmployeeService {
         return page.map(EmployeeListItemDto::fromEntity);
     }
     
+    @Transactional(readOnly = true)
     public Employee read(Integer id) {
         log.info("read(id={})", id);
         

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="~{/layout/fragments :: documentHeader}"></th:block>
+    </head>
+    <body>
+        <th:block th:replace="~{/layout/fragments :: pageHeader('부서 목록')}"></th:block>
+        
+        <main class="m-2">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>이름</th>
+                        <th>매니저</th>
+                        <th>위치</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dept : ${page}" th:object="${dept}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{departmentName}"></td>
+                        <td th:text="*{manager != null} ? *{manager.id}"></td>
+                        <td th:text="*{location.id}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
+        <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+    </body>
+</html>
