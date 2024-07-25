@@ -27,5 +27,11 @@ public class EmployeeService {
                 .map(EmployeeListItemDto::fromEntity) // (x) -> EmployeeListItemDto.fromEntity(x)
                 .toList();
     }
+    
+    public Employee read(Integer id) {
+        log.info("read(id={})", id);
+        
+        return empRepo.findById(id).orElseThrow();
+    }
 
 }

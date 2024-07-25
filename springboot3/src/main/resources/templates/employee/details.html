@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="~{/layout/fragments :: documentHeader}"></th:block>
+    </head>
+    <body>
+        <th:block th:replace="~{/layout/fragments :: pageHeader('직원 상세 정보')}"></th:block>
+        
+        <main th:text="${employee}"></main>
+        
+        <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+    </body>
+</html>

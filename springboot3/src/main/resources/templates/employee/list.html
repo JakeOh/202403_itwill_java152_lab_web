@@ -19,8 +19,14 @@
                 </thead>
                 <tbody>
                     <tr th:each="emp : ${employees}" th:object="${emp}">
-                        <td th:text="*{employeeId}"></td>
-                        <td th:text="*{employeeName}"></td>
+                        <td>
+                            <a th:href="@{/employee/details/{id}(id=*{employeeId})}" 
+                                th:text="*{employeeId}"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/employee/details/{id}(id=*{employeeId})}"
+                                th:text="*{employeeName}"></a>
+                        </td>
                         <td th:text="*{phoneNumber}"></td>
                         <td th:text="*{jobTitle}"></td>
                         <td th:text="*{departmentName}"></td>
@@ -28,6 +34,7 @@
                 </tbody>
             </table>
         </main>
+        
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
     </body>
 </html>
