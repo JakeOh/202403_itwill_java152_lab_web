@@ -6,9 +6,28 @@
     <body>
         <th:block th:replace="~{/layout/fragments :: pageHeader('직원 목록')}"></th:block>
         
-        <!-- TODO: 직원 목록 테이블 -->
-        <div th:text="${employees}"></div>
-        
+        <main class="m-2">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>사번</th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>직책</th>
+                        <th>부서</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="emp : ${employees}" th:object="${emp}">
+                        <td th:text="*{employeeId}"></td>
+                        <td th:text="*{employeeName}"></td>
+                        <td th:text="*{phoneNumber}"></td>
+                        <td th:text="*{jobTitle}"></td>
+                        <td th:text="*{departmentName}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
     </body>
 </html>
