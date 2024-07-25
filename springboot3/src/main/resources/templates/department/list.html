@@ -18,13 +18,21 @@
                 </thead>
                 <tbody>
                     <tr th:each="dept : ${page}" th:object="${dept}">
-                        <td th:text="*{id}"></td>
-                        <td th:text="*{departmentName}"></td>
+                        <td>
+                            <a th:href="@{/department/details/{id}(id=*{id})}"
+                                th:text="*{id}"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/department/details/{id}(id=*{id})}"
+                                th:text="*{departmentName}"></a>
+                        </td>
                         <td th:text="*{manager != null} ? *{manager.id}"></td>
                         <td th:text="*{location.id}"></td>
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="mt-2" th:insert="~{/layout/fragments :: pagination}"></div>
         </main>
         
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>

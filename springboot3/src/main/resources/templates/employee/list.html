@@ -34,28 +34,7 @@
                 </tbody>
             </table>
             
-            <div class="mt-2">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item"
-                        th:classappend="${!page.hasPrevious} ? 'disabled'">
-                        <a class="page-link"
-                            th:href="@{|?p=${page.number - 1}|}">이전</a>
-                    </li>
-                    <li class="page-item"
-                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
-                        th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
-                        th:classappend="${pageNo == page.number} ? 'active'">
-                        <a class="page-link"
-                            th:href="@{|?p=${pageNo}|}"
-                            th:text="${pageNo + 1}"></a>
-                    </li>
-                    <li class="page-item"
-                        th:classappend="${!page.hasNext} ? 'disabled'">
-                        <a class="page-link"
-                            th:href="@{|?p=${page.number + 1}|}">다음</a>
-                    </li>
-                </ul>
-            </div>
+            <div class="mt-2" th:insert="~{/layout/fragments :: pagination}"></div>
         </main>
         
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>

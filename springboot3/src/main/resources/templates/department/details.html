@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="~{/layout/fragments :: documentHeader}"></th:block>
+    </head>
+    <body>
+        <th:block th:replace="~{/layout/fragments :: pageHeader('부서 상세 정보')}"></th:block>
+        
+        <main class="m-2">
+            <section class="mt-2 card">
+                <div class="card-header">
+                    <h2>부서 정보</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody th:object="${department}">
+                            <tr>
+                                <th>번호</th>
+                                <td th:text="*{departmentId}"></td>
+                            </tr>
+                            <tr>
+                                <th>이름</th>
+                                <td th:text="*{departmentName}"></td>
+                            </tr>
+                            <tr>
+                                <th>매니저</th>
+                                <td th:text="*{manager != null} ? *{manager.id}"></td>
+                            </tr>
+                            <tr>
+                                <th>위치</th>
+                                <td th:text="*{location.id}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section class="mt-2 card">
+                <div class="card-header">
+                    <h2>직원 목록</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>사번</th>
+                                <th>이름</th>
+                                <th>전화번호</th>
+                                <th>직책</th>
+                                <th>부서</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="emp : ${department.employees}" th:object="${emp}">
+                                <td>
+                                    <a th:href="@{/employee/details/{id}(id=*{employeeId})}" 
+                                        th:text="*{employeeId}"></a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/employee/details/{id}(id=*{employeeId})}"
+                                        th:text="*{employeeName}"></a>
+                                </td>
+                                <td th:text="*{phoneNumber}"></td>
+                                <td th:text="*{jobTitle}"></td>
+                                <td th:text="*{departmentName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+    </body>
+</html>

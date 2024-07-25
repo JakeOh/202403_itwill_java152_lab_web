@@ -6,7 +6,54 @@
     <body>
         <th:block th:replace="~{/layout/fragments :: pageHeader('직원 상세 정보')}"></th:block>
         
-        <main th:text="${employee}"></main>
+        <main class="mt-2">
+            <div class="card card-body">
+                <table class="table table-hover">
+                    <tbody th:object="${employee}">
+                        <tr>
+                            <th>사번</th>
+                            <td th:text="*{id}"></td>
+                        </tr>
+                        <tr>
+                            <th>이름</th>
+                            <td th:text="|*{firstName} *{lastName}|"></td>
+                        </tr>
+                        <tr>
+                            <th>이메일</th>
+                            <td th:text="*{email}"></td>
+                        </tr>
+                        <tr>
+                            <th>전화번호</th>
+                            <td th:text="*{phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <th>입사일</th>
+                            <td th:text="*{hireDate}"></td>
+                        </tr>
+                        <tr>
+                            <th>직책</th>
+                            <td th:text="*{job.jobTitle}"></td>
+                        </tr>
+                        <tr>
+                            <th>급여</th>
+                            <td th:text="*{salary}"></td>
+                        </tr>
+                        <tr>
+                            <th>수당</th>
+                            <td th:text="*{commissionPct}"></td>
+                        </tr>
+                        <tr>
+                            <th>매니저</th>
+                            <td th:text="*{manager != null} ? *{manager.id}"></td>
+                        </tr>
+                        <tr>
+                            <th>부서</th>
+                            <td th:text="*{department != null} ? *{department.departmentName}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
         
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
     </body>
