@@ -41,5 +41,13 @@ public class DepartmentController {
         
         return "department/details";
     }
+    
+    @GetMapping("/details")
+    public void details(@RequestParam(name = "dname") String departmentName, Model model) {
+        log.info("details(departmentName={})", departmentName);
+        
+        DepartmentDetailsDto dto = deptSvc.read(departmentName);
+        model.addAttribute("department", dto);
+    }
 
 }

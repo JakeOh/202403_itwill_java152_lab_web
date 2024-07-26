@@ -29,7 +29,10 @@
                         </td>
                         <td th:text="*{phoneNumber}"></td>
                         <td th:text="*{jobTitle}"></td>
-                        <td th:text="*{departmentName}"></td>
+                        <td>
+                            <a th:href="@{/department/details(dname=*{departmentName})}"
+                                th:text="*{departmentName}"></a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

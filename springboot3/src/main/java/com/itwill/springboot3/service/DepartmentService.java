@@ -46,5 +46,12 @@ public class DepartmentService {
         
         return DepartmentDetailsDto.fromEntity(department, employees);
     }
+    
+    @Transactional(readOnly = true)
+    public DepartmentDetailsDto read(String departmentName) {
+        log.info("read(departmentName={})", departmentName);
+        //TODO
+        return null;
+    }
 
 }
