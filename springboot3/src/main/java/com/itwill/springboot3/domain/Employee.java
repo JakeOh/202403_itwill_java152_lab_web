@@ -9,12 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor @Getter @ToString @EqualsAndHashCode
+@NoArgsConstructor @AllArgsConstructor(access = AccessLevel.PRIVATE) @Builder
+@Getter @ToString @EqualsAndHashCode
 @Entity @Table(name = "EMPLOYEES") // EMPLOYEES 테이블에 매핑되는 엔터티.
 public class Employee {
 
