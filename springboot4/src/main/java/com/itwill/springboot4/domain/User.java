@@ -3,6 +3,8 @@ package com.itwill.springboot4.domain;
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,7 +30,13 @@ public class User {
     @Basic(optional = false)
     private String password;
     
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+    
+    @Column(length = 1000)
+    private String memo;
+    
+    @Embedded // @Embeddable로 선언된 객체를 포함. 생략 가능.
+    private Address address;
 
 }
