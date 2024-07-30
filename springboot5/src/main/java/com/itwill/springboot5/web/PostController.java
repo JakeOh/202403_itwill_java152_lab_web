@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwill.springboot5.domain.Post;
 import com.itwill.springboot5.dto.PostCreateDto;
 import com.itwill.springboot5.dto.PostListItemDto;
+import com.itwill.springboot5.dto.PostUpdateDto;
 import com.itwill.springboot5.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -57,6 +58,24 @@ public class PostController {
         
         //-> view 이름은, 요청 주소가 "details"인 경우에는 details.html
         // 요청 주소가 "modify"인 경우에는 modify.html
+    }
+    
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        log.info("delete(id={})", id);
+        
+        postSvc.delete(id);
+        
+        return "redirect:/post/list";
+    }
+    
+    @PostMapping("/update")
+    public String update(PostUpdateDto dto) {
+        log.info("update(dto={})", dto);
+        
+        postSvc.update(dto);
+        
+        return "redirect:/post/details?id=" + dto.getId();
     }
     
 }
