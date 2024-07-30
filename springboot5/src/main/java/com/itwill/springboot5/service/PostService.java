@@ -3,8 +3,10 @@ package com.itwill.springboot5.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.springboot5.domain.Post;
+import com.itwill.springboot5.dto.PostCreateDto;
 import com.itwill.springboot5.dto.PostListItemDto;
 import com.itwill.springboot5.repository.PostRepository;
 
@@ -18,6 +20,7 @@ public class PostService {
 
     private final PostRepository postRepo;
     
+    @Transactional(readOnly = true)
     public List<PostListItemDto> read() {
         log.info("read()");
         
@@ -31,6 +34,17 @@ public class PostService {
                 .toList();
         
         return posts;
+    }
+    
+    @Transactional
+    public Long create(PostCreateDto dto) {
+        log.info("create(dto={})", dto);
+        
+        // 영속성 계층의 메서드를 호출해서 DB insert 쿼리를 실행.
+        Post entity = postRepo.save(dto.toEntity());
+        log.info("entity = {}", entity);
+        
+        return entity.getId(); // DB에 insert된 레코드의 PK(id)를 리턴. 
     }
     
 }

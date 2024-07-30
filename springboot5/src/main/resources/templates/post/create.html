@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="~{/layout/fragments :: documentHeader}"></th:block>
+    </head>
+    <body>
+        <th:block th:replace="~{/layout/fragments :: pageHeader('포스트 작성 페이지')}"></th:block>
+        
+        <main class="mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" th:action="@{/post/create}">
+                        <div class="mt-2">
+                            <label class="form-label" for="title">제목</label>
+                            <input type="text" class="form-control" 
+                                id="title" name="title" required autofocus />
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label" for="content">내용</label>
+                            <textarea class="form-control" id="content" rows="5"
+                                name="content" required></textarea>
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label" for="author">작성자</label>
+                            <input type="text" class="form-control" id="author"
+                                name="author" required />
+                        </div>
+                        <div class="mt-2">
+                            <input type="submit" class="form-control btn btn-success"
+                                value="작성완료" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+    </body>
+</html>
