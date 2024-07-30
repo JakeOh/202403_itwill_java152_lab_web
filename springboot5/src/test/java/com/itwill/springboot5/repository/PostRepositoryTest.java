@@ -2,6 +2,7 @@ package com.itwill.springboot5.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -63,11 +64,26 @@ public class PostRepositoryTest {
         log.info("save 호출 후 = {}", entity);
     }
     
-    @Test
+//    @Test
     public void testDelete() {
         postRepo.deleteById(1L);
         // JPA는 id로 select 쿼리를 먼저 실행한 후
         // 엔터티가 존재하는 경우에 delete 쿼리를 실해함.
+    }
+    
+    @Test
+    public void makeDummyData() {
+        List<Post> data = new ArrayList<>();
+        for (int i = 1; i <= 50; i++) {
+            Post post = Post.builder()
+                    .title("Dummy Title #" + i)
+                    .content("dummy content #" + i)
+                    .author("admin")
+                    .build();
+            data.add(post);
+        }
+        
+        postRepo.saveAll(data);
     }
 
 }

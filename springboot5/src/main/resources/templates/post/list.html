@@ -21,7 +21,10 @@
                         <tbody>
                             <tr th:each="post : ${page}" th:object="${post}">
                                 <td th:text="*{id}"></td>
-                                <td th:text="*{title}"></td>
+                                <td>
+                                    <!-- query string request parameter 방식 요청 주소 -->
+                                    <a th:href="@{/post/details(id=*{id})}" th:text="*{title}"></a>
+                                </td>
                                 <td th:text="*{author}"></td>
                                 <td th:text="*{#temporals.format(modifiedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
                             </tr>
