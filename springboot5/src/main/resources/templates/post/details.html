@@ -33,14 +33,19 @@
                         <div class="mt-2">
                             <label class="form-label" for="createdTime">작성시간</label>
                             <input type="text" class="form-control" id="createdTime" 
-                                th:value="*{createdTime}" readonly />
+                                th:value="*{#temporals.format(createdTime, 'yyyy-MM-dd HH:mm:ss')}" readonly />
                         </div>
                         <div class="mt-2">
                             <label class="form-label" for="modifiedTime">수정시간</label>
                             <input type="text" class="form-control" id="modifiedTime" 
-                                th:value="*{modifiedTime}" readonly />
+                                th:value="*{#temporals.format(modifiedTime, 'yyyy-MM-dd HH:mm:ss')}" readonly />
                         </div>
                     </form>
+                    
+                    <div class="mt-2">
+                        <a class="btn btn-success form-control"
+                            th:href="@{/post/modify(id=*{id})}">수정하기</a>
+                    </div>
                 </div>
             </div>
         </main>

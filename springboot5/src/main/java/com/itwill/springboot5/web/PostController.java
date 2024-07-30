@@ -48,12 +48,15 @@ public class PostController {
         return "redirect:/post/list";
     }
     
-    @GetMapping("/details")
+    @GetMapping({ "/details", "/modify" })
     public void details(@RequestParam(name = "id") Long id, Model model) {
         log.info("details(id={})", id);
         
         Post entity = postSvc.readById(id);
         model.addAttribute("post", entity);
+        
+        //-> view 이름은, 요청 주소가 "details"인 경우에는 details.html
+        // 요청 주소가 "modify"인 경우에는 modify.html
     }
     
 }

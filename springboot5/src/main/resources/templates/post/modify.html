@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:replace="~{/layout/fragments :: documentHeader}"></th:block>
+    </head>
+    <body>
+        <th:block th:replace="~{/layout/fragments :: pageHeader('포스트 수정 페이지')}"></th:block>
+        
+        <main>
+            <div class="mt-2 card">
+                <div class="card-body" th:object="${post}">
+                    <form id="updateForm">
+                        <div class="mt-2 d-none">
+                            <label class="form-label" for="id">번호</label>
+                            <input type="text" class="form-control" id="id" 
+                                th:value="*{id}" readonly />
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label" for="title">제목</label>
+                            <input type="text" class="form-control" id="title" 
+                                th:value="*{title}" name="title" autofocus />
+                        </div>
+                        <div class="mt-2">
+                            <label class="form-label" for="content">내용</label>
+                            <textarea rows="5" class="form-control" id="content"
+                                th:text="*{content}" name="content"></textarea>
+                        </div>
+                    </form>
+                    
+                    <div class="mt-2 d-flex justify-content-end">
+                        <button class="mx-1 btn btn-outline-danger" id="btnDelete">삭제</button>
+                        <button class="mx-1 btn btn-outline-primary" id="btnUpdate">업데이트</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+        <script th:src="@{/js/post-modify.js}"></script>
+    </body>
+</html>
