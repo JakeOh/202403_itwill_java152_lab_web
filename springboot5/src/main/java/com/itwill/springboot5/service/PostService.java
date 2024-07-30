@@ -54,4 +54,14 @@ public class PostService {
         return entity.getId(); // DB에 insert된 레코드의 PK(id)를 리턴. 
     }
     
+    @Transactional(readOnly = true)
+    public Post readById(Long id) {
+        log.info("readById(id={})", id);
+        
+        Post entity = postRepo.findById(id).orElseThrow();
+        log.info("entity = {}", entity);
+        
+        return entity;
+    }
+    
 }
