@@ -46,6 +46,31 @@
             </nav>
         </th:block>
         
+        <th:block th:fragment="pagination">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"
+                        th:classappend="${!page.hasPrevious} ? 'disabled'">
+                        <a class="page-link"
+                            th:href="@{|?p=${page.number - 1}|}">이전</a>
+                    </li>
+                    <li class="page-item"
+                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
+                        th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
+                        th:classappend="${pageNo == page.number} ? 'active'">
+                        <a class="page-link"
+                            th:href="@{|?p=${pageNo}|}"
+                            th:text="${pageNo + 1}"></a>
+                    </li>
+                    <li class="page-item"
+                        th:classappend="${!page.hasNext} ? 'disabled'">
+                        <a class="page-link"
+                            th:href="@{|?p=${page.number + 1}|}">다음</a>
+                    </li>
+                </ul>
+            </nav>
+        </th:block>
+        
         <th:block th:fragment="bootstrapJS">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
