@@ -9,11 +9,11 @@
         <main>
             <div class="mt-2 card">
                 <div class="card-body" th:object="${post}">
-                    <form id="updateForm">
+                    <form id="updateForm" method="post" th:action="@{/post/update}">
                         <div class="mt-2 d-none">
                             <label class="form-label" for="id">번호</label>
                             <input type="text" class="form-control" id="id" 
-                                th:value="*{id}" readonly />
+                                th:value="*{id}" name="id" readonly />
                         </div>
                         <div class="mt-2">
                             <label class="form-label" for="title">제목</label>
