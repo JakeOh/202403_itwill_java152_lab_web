@@ -48,24 +48,25 @@
         
         <th:block th:fragment="pagination">
             <nav>
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center"
+                    th:with="uriBuilder=${T(com.itwill.springboot5.web.ServletUriComponentsBuilderWrapper).fromCurrentRequest()}">
                     <li class="page-item"
                         th:classappend="${!page.hasPrevious} ? 'disabled'">
                         <a class="page-link"
-                            th:href="@{|?p=${page.number - 1}|}">이전</a>
+                            th:href="@{${uriBuilder.replaceQueryParam('p', page.number - 1).toUriString()}}">이전</a>
                     </li>
                     <li class="page-item"
                         th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
                         th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
                         th:classappend="${pageNo == page.number} ? 'active'">
                         <a class="page-link"
-                            th:href="@{|?p=${pageNo}|}"
+                            th:href="@{${uriBuilder.replaceQueryParam('p', pageNo).toUriString()}}"
                             th:text="${pageNo + 1}"></a>
                     </li>
                     <li class="page-item"
                         th:classappend="${!page.hasNext} ? 'disabled'">
                         <a class="page-link"
-                            th:href="@{|?p=${page.number + 1}|}">다음</a>
+                            th:href="@{${uriBuilder.replaceQueryParam('p', page.number + 1).toUriString()}}">다음</a>
                     </li>
                 </ul>
             </nav>

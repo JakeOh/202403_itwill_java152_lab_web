@@ -83,7 +83,8 @@ public class PostController {
     public String search(PostSearchRequestDto dto, Model model) {
         log.info("search(dto={})", dto);
         
-        // TODO
+        Page<PostListItemDto> result = postSvc.search(dto, Sort.by("id").descending());
+        model.addAttribute("page", result);
         
         return "post/list";
     }

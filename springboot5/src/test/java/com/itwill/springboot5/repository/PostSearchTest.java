@@ -20,13 +20,14 @@ public class PostSearchTest {
     
     @Test
     public void testFindByKeyword() {
-        String keyword = "adM";
-        int p = 2;
+        String keyword = "te";
+        int p = 0;
         Pageable pageable = PageRequest.of(p, 5, Sort.by("id").descending());
         
 //        Page<Post> page = postRepo.findByTitleContainingIgnoreCase(keyword, pageable);
 //        Page<Post> page = postRepo.findByContentContainingIgnoreCase(keyword, pageable);
-        Page<Post> page = postRepo.findByAuthorContainingIgnoreCase(keyword, pageable);
+//        Page<Post> page = postRepo.findByAuthorContainingIgnoreCase(keyword, pageable);
+        Page<Post> page = postRepo.findByTitleOrContent(keyword, pageable);
         page.forEach(System.out::println);
     }
     
