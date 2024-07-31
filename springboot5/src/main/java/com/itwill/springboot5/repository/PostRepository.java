@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.itwill.springboot5.domain.Post;
 
 // CRUD + Paging/Sorting
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostRepository extends JpaRepository<Post, Long>, PostQuerydsl {
     // JPA Query Method
     // 제목에 포함된 문자열 대소문자 구분없이 검색하기:
     Page<Post> findByTitleContainingIgnoreCase(String keyword, Pageable pageable);
