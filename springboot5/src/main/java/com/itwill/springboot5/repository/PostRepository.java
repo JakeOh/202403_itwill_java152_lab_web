@@ -26,7 +26,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     // findByTitleContainingOrContentContainingAllIgnoreCase(args)
     @Query("select p from Post p "
             + "where upper(p.title) like upper('%' || :keyword || '%') "
-            + "where upper(p.content) like upper('%' || :keyword || '%') ")
+            + "or upper(p.content) like upper('%' || :keyword || '%') ")
     Page<Post> findByTitleOrContent(@Param("keyword") String keyword, Pageable pageable);
     
 }
