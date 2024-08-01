@@ -1,5 +1,6 @@
 package com.itwill.springboot5.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.itwill.springboot5.domain.Post;
@@ -32,4 +33,13 @@ public interface PostQuerydsl {
     
     // content에 포함된 문자열 대소문자 구분없이 검색
     List<Post> searchByContent(String keyword);
+    
+    // 제목 또는 내용에 포함된 문자열 대소문자 구분없이 검색
+    List<Post> searchByTitleOrContent(String keyword);
+    
+    // 수정시간 범위로 검색: where modified_time between ? and ?
+    List<Post> searchByModifiedTime(LocalDateTime from, LocalDateTime to);
+    
+    // 작성자와 제목으로 검색: where author = ? and lower(title) like ?
+    List<Post> searchByAuthorAndTitle(String author, String title);
 }

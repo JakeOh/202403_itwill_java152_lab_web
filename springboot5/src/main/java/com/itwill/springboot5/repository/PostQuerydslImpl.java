@@ -1,5 +1,6 @@
 package com.itwill.springboot5.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -54,6 +55,39 @@ public class PostQuerydslImpl extends QuerydslRepositorySupport
                 .orderBy(post.id.desc());
         
         return query.fetch();
+    }
+    
+    @Override
+    public List<Post> searchByTitleOrContent(String keyword) {
+        log.info("searchByTitleOrContent(keyword={})", keyword);
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post);
+        query.where(
+                post.title.containsIgnoreCase(keyword)
+                .or(post.content.containsIgnoreCase(keyword))
+        );
+        query.orderBy(post.id.desc());
+        
+        return query.fetch();
+    }
+    
+    @Override
+    public List<Post> searchByModifiedTime(LocalDateTime from, LocalDateTime to) {
+        log.info("searchByModifiedTime(from={}, to={})", from, to);
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post)
+                .where(post.modifiedTime.between(from, to))
+                .orderBy(post.modifiedTime.desc());
+        
+        return query.fetch();
+    }
+    
+    @Override
+    public List<Post> searchByAuthorAndTitle(String author, String title) {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }
