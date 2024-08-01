@@ -1,8 +1,12 @@
 package com.itwill.springboot5.repository;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import com.itwill.springboot5.domain.Post;
@@ -131,9 +135,48 @@ public class PostQuerydslImpl extends QuerydslRepositorySupport
     }
     
     @Override
-    public List<Post> searchByKeywords(String[] keywsords) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Post> searchByKeywords(String[] keywords) {
+        log.info("searchByKeywords(keywords={})", Arrays.asList(keywords));
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post);
+        BooleanBuilder builder = new BooleanBuilder();
+        for (String k : keywords) {
+            builder.or(post.title.containsIgnoreCase(k)
+                    .or(post.content.containsIgnoreCase(k)));
+        }
+        query.where(builder).orderBy(post.id.desc());
+        
+        return query.fetch();
+    }
+    
+    @Override
+    public Page<Post> searchByKeywords(String[] keywords, Pageable pageable) {
+        log.info("searchByKeywords(keyword={}, Pageable={})",
+                Arrays.asList(keywords), pageable);
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post);
+        BooleanBuilder builder = new BooleanBuilder();
+        for (String k : keywords) {
+            builder.or(post.title.containsIgnoreCase(k)
+                    .or(post.content.containsIgnoreCase(k)));
+        }
+        query.where(builder);
+        
+        // Paging & Sorting 적용
+        getQuerydsl().applyPagination(pageable, query);
+        
+        // 한 페이지에 표시할 데이터를 fetch.
+        List<Post> list = query.fetch();
+        
+        // 전체 레코드 개수를 fetch.
+        long count = query.fetchCount();
+        
+        // Page<T> 객체를 생성.
+        Page<Post> page = new PageImpl<>(list, pageable, count);
+        
+        return page;
     }
     
 }

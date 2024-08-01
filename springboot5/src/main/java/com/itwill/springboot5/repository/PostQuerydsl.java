@@ -3,6 +3,9 @@ package com.itwill.springboot5.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.itwill.springboot5.domain.Post;
 import com.itwill.springboot5.dto.PostSearchRequestDto;
 
@@ -48,6 +51,8 @@ public interface PostQuerydsl {
     List<Post> searchByCategory(PostSearchRequestDto dto);
     
     // 제목 또는 내용에 검색어들 중 한 개라도 포함되어 있는 레코드들을 검색
-    List<Post> searchByKeywords(String[] keywsords);
+    List<Post> searchByKeywords(String[] keywords);
     
+    // Paging 처리
+    Page<Post> searchByKeywords(String[] keywords, Pageable pageable);
 }
