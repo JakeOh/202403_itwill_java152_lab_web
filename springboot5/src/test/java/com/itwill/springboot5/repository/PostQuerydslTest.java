@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itwill.springboot5.domain.Post;
+import com.itwill.springboot5.dto.PostSearchRequestDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,9 +31,16 @@ public class PostQuerydslTest {
 //        result = postRepo.searchByContent("테");
 //        result = postRepo.searchByTitleOrContent("jpa");
         
-        LocalDateTime from = LocalDateTime.of(2024, 7, 29, 0, 0);
-        LocalDateTime to = LocalDateTime.of(2024, 7, 30, 23, 59);
-        result = postRepo.searchByModifiedTime(from, to);
+//        LocalDateTime from = LocalDateTime.of(2024, 7, 29, 0, 0);
+//        LocalDateTime to = LocalDateTime.of(2024, 7, 30, 23, 59);
+//        result = postRepo.searchByModifiedTime(from, to);
+        
+//        result = postRepo.searchByAuthorAndTitle("guest", "test");
+        
+        PostSearchRequestDto dto = new PostSearchRequestDto();
+        dto.setCategory("a");
+        dto.setKeyword("ES");
+        result = postRepo.searchByCategory(dto);
         
         result.forEach(System.out::println);
     }

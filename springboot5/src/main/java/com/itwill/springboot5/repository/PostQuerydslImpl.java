@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 import com.itwill.springboot5.domain.Post;
 import com.itwill.springboot5.domain.QPost;
+import com.itwill.springboot5.dto.PostSearchRequestDto;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 
 import lombok.extern.slf4j.Slf4j;
@@ -86,6 +88,50 @@ public class PostQuerydslImpl extends QuerydslRepositorySupport
     
     @Override
     public List<Post> searchByAuthorAndTitle(String author, String title) {
+        log.info("searchByAuthorAndTitle(author={}, title={})", author, title);
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post)
+                .where(post.author.eq(author)
+                        .and(post.title.containsIgnoreCase(title)))
+                .orderBy(post.id.desc());
+        
+        return query.fetch();
+    }
+    
+    @Override
+    public List<Post> searchByCategory(PostSearchRequestDto dto) {
+        log.info("searchByCategory(dto={})", dto);
+        String category = dto.getCategory();
+        String keyword = dto.getKeyword();
+        
+        QPost post = QPost.post;
+        JPQLQuery<Post> query = from(post);
+        
+        // BooleanBuilder: where() 메서드의 아규먼트인 BooleanExpression 객체를 생성할 수 있는 객체
+        BooleanBuilder builder = new BooleanBuilder();
+        switch (category) {
+        case "t":
+            builder.and(post.title.containsIgnoreCase(keyword));
+            break;
+        case "c":
+            builder.and(post.content.containsIgnoreCase(keyword));
+            break;
+        case "tc":
+            builder.and(post.title.containsIgnoreCase(keyword))
+                .or(post.content.containsIgnoreCase(keyword));
+            break;
+        case "a":
+            builder.and(post.author.containsIgnoreCase(keyword));
+            break;
+        }
+        query.where(builder).orderBy(post.id.desc());
+        
+        return query.fetch();
+    }
+    
+    @Override
+    public List<Post> searchByKeywords(String[] keywsords) {
         // TODO Auto-generated method stub
         return null;
     }
