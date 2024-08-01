@@ -109,6 +109,7 @@ public class PostService {
             result = postRepo.findByAuthorContainingIgnoreCase(dto.getKeyword(), pageable);
             break;
         }
+        log.info("totalPages = {}", result.getTotalPages());
         
         return  result.map(PostListItemDto::fromEntity);
     }

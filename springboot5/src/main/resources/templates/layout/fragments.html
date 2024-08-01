@@ -48,25 +48,24 @@
         
         <th:block th:fragment="pagination">
             <nav>
-                <ul class="pagination justify-content-center"
-                    th:with="uriBuilder=${T(com.itwill.springboot5.web.ServletUriComponentsBuilderWrapper).fromCurrentRequest()}">
+                <ul class="pagination justify-content-center">
                     <li class="page-item"
                         th:classappend="${!page.hasPrevious} ? 'disabled'">
-                        <a class="page-link"
-                            th:href="@{${uriBuilder.replaceQueryParam('p', page.number - 1).toUriString()}}">이전</a>
+                       <a class="page-link"
+                            th:href="@{${baseUrl}(p=${page.number - 1}, category=${param.category}, keyword=${param.keyword})}">이전</a>
                     </li>
                     <li class="page-item"
-                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
+                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1, 1)}"
                         th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
                         th:classappend="${pageNo == page.number} ? 'active'">
                         <a class="page-link"
-                            th:href="@{${uriBuilder.replaceQueryParam('p', pageNo).toUriString()}}"
+                            th:href="@{${baseUrl}(p=${pageNo}, category=${param.category}, keyword=${param.keyword})}"
                             th:text="${pageNo + 1}"></a>
                     </li>
                     <li class="page-item"
                         th:classappend="${!page.hasNext} ? 'disabled'">
                         <a class="page-link"
-                            th:href="@{${uriBuilder.replaceQueryParam('p', page.number + 1).toUriString()}}">다음</a>
+                            th:href="@{${baseUrl}(p=${page.number + 1}, category=${param.category}, keyword=${param.keyword})}">다음</a>
                     </li>
                 </ul>
             </nav>
