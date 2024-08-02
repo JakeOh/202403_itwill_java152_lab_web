@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 댓글 내용 입력란을 비움.
                 document.querySelector('textarea#commentText').value = '';
                 
-                // TODO: 댓글 목록 갱신
+                // 댓글 목록 갱신
+                getAllComments(0);
             })
             .catch((error) => console.log(error));
     }
@@ -80,9 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
         axios.get(uri)
             .then((response) => {
                 console.log(response);
-                // TODO: 댓글 목록을 HTML로 작성
+                makeCommentElements(response.data.content);
             })
             .catch((error) => console.log(error));
+    }
+
+    function makeCommentElements(data) {
+        
     }
 
 });
