@@ -51,7 +51,36 @@
         </main>
         
         <!-- 댓글 작성/목록 Collapse -->
-        <div></div>
+        <div class="mt-2 card">
+            <div class="card-header">
+                <button class="btn btn-outline-secondary" id="btnToggle"
+                    data-toggle="collapse">댓글 보기</button>
+            </div>
+            <div class="card-body collapse" id="collapseComments">
+                <!-- 댓글 작성 -->
+                <div class="row">
+                    <div class="col-10">
+                        <textarea class="form-control" id="commentText" rows="3"
+                            placeholder="댓글 내용 작성"></textarea>
+                        
+                        <!-- TODO: 로그인 사용자 이름으로 설정 -->
+                        <input class="d-none" id="commentWriter" value="admin" readonly />
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-success form-control"
+                            id="btnRegisterComment">등록</button>
+                    </div>
+                </div>
+                
+                <!-- 댓글 목록 -->
+                <div class="mt-2" id="divComments"></div>
+                
+                <!-- 댓글 목록 페이징 처리를 위한 버튼: [더보기] 버튼 -->
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-secondary" id="btnMoreComments">더보기</button>
+                </div>
+            </div>
+        </div>
         
         <!-- Bootstrap 자바스크립트 -->
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
