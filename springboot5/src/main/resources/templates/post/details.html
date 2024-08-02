@@ -50,6 +50,16 @@
             </div>
         </main>
         
+        <!-- 댓글 작성/목록 Collapse -->
+        <div></div>
+        
+        <!-- Bootstrap 자바스크립트 -->
         <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+        
+        <!-- Ajax를 사용하기 위한 Axios 자바스크립트 라이브러리 -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        
+        <!-- 댓글 기능을 위한 자바스크립트 -->
+        <script src="/js/comments.js"></script>
     </body>
 </html>
