@@ -24,8 +24,12 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<Comment> registerComment(@RequestBody CommentRegisterDto dto) {
         log.info("registgerComment(dto={})", dto);
-        // TODO
-        return null;
+        
+        // 서비스 계층의 메서드 호출(댓글 등록 서비스 실행)
+        Comment entity = commentSvc.create(dto);
+        log.info("save 결과: {}", entity);
+        
+        return ResponseEntity.ok(entity);
     }
     
 }
