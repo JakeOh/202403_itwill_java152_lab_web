@@ -24,6 +24,37 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 댓글 [등록] 버튼을 찾아서, 클릭 이벤트 리스너를 설정:
     const btnRegisterComment = document.querySelector('button#btnRegisterComment');
-    btnRegisterComment.addEventListener('click', () => {});
+    btnRegisterComment.addEventListener('click', registerComment);
     
+    // 댓글 [더보기] 버튼을 찾아서, 클릭 이벤트 리스너를 설정:
+    const btnMoreComments = document.querySelector('button#btnMoreComments');
+    btnMoreComments.addEventListener('click', () => {}); // TODO
+    
+    
+    //----- 함수 정의(선언) -----
+    function registerComment() {
+        // 댓글이 달린 포스트의 아이디
+        const postId = document.querySelector('input#id').value;
+        // 댓글 내용
+        const ctext = document.querySelector('textarea#commentText').value;
+        // 댓글 작성자
+        const writer = document.querySelector('input#commentWriter').value;
+        
+        if (ctext.trim() === '') {
+            alert('댓글 내용을 입력하세요.');
+            return;
+        }
+        
+        // Ajax 요청에서 보낼 데이터
+        const data = { postId, ctext, writer };
+        
+        // Ajax POST 방식 요청을 보냄고, 응답/에러 처리 콜백 등록.
+        axios.post('/api/comment', data)
+            .then((response) => {
+                // TODO
+                console.log(response);
+            })
+            .catch((error) => console.log(error));
+    }
+
 });
