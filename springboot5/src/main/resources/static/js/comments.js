@@ -83,6 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((response) => {
                 console.log(response);
                 currentPageNo = response.data.number;
+                
+                // 현재 페이지 번호보다 페이지 개수가 더 많으면 댓글 [더보기] 버튼을 보여줌.
+                const divBtnMore = document.querySelector('div#divBtnMore');
+                if (currentPageNo + 1 < response.data.totalPages) {
+                    divBtnMore.classList.remove('d-none');
+                } else {
+                    divBtnMore.classList.add('d-none');
+                }
+                
                 makeCommentElements(response.data.content, response.data.number);
             })
             .catch((error) => console.log(error));
