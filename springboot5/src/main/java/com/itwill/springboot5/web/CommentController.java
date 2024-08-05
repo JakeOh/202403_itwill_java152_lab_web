@@ -2,6 +2,7 @@ package com.itwill.springboot5.web;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,15 @@ public class CommentController {
         Page<Comment> data = commentSvc.readCommentList(postId, pageNo);
         
         return ResponseEntity.ok(data);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleteComment(@PathVariable Long id) {
+        log.info("deleteComment(id={})", id);
+        
+        commentSvc.delete(id);
+        
+        return ResponseEntity.ok(id); // 삭제한 댓글 아이디를 응답으로 보냄.
     }
     
 }

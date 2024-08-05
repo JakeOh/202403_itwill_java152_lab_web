@@ -129,10 +129,32 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', deleteComment);
         });
         
+        const btnUpdates = document.querySelectorAll('button.btnUpdate');
+        btnUpdates.forEach((btn) => {
+            btn.addEventListener('click', updateComment);
+        });
+        
     }
     
     function deleteComment(event) {
-        console.log(event);
+//        console.log(event);
+//        console.log(event.target);
+        if (!confirm('정말 삭제할까요?')) {
+            return;
+        }
+        
+        const id = event.target.getAttribute('data-id'); // 삭제할 댓글 아이디
+        const uri = `/api/comment/${id}`; // 삭제 Ajax 요청을 보낼 주소
+        axios.delete(uri)
+            .then((response) => {
+                console.log(response);
+                alert(`댓글 #${id} 삭제 성공`);
+                getAllComments(0); // 댓글 목록 갱신
+            })
+            .catch((error) => console.log(error));
+    }
+
+    function updateComment(event) {
         console.log(event.target);
     }
 
