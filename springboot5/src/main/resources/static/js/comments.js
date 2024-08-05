@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="mt-2">
                     <div class="mt-2">
-                        <textarea class="form-control">${comment.ctext}</textarea>
+                        <textarea class="commentText form-control" data-id="${comment.id}">${comment.ctext}</textarea>
                     </div>
                     <div class="mt-2">
                         <button class="btnDelete btn btn-outline-danger btn-sm" data-id="${comment.id}">삭제</button>
@@ -155,7 +155,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateComment(event) {
-        console.log(event.target);
+//        console.log(event.target);
+        const id = event.target.getAttribute('data-id'); // 업데이트할 댓글 아이디
+        
+        const textarea = document.querySelector(`textarea.commentText[data-id="${id}"]`);
+//        console.log(textarea);
+
+        const ctext = textarea.value; // 업데이트할 댓글 내용
+        if (ctext.trim() === '') {
+            alert('댓글 내용은 반드시 입력해야 합니다.');
+            return;
+        }
+        
+        if (!confirm('변경된 댓글을 저장할까요?')) {
+            return;
+        }
+        
+        const uri = `/api/comment/${id}`; // Ajax 요청을 보낼 주소
+        const data = { id, ctext }; // 업데이트 요청 데이터. {id: id, ctext: ctext}
+        axios.put(uri, data)
+            .then((response) => {
+                console.log(response);
+                // TODO
+            })
+            .catch((error) => console.log(error));
     }
 
 });
