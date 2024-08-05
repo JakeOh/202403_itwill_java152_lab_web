@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <textarea class="form-control">${comment.ctext}</textarea>
                     </div>
                     <div class="mt-2">
-                        <button class="btnDelete btn btn-outline-danger btn-sm">삭제</button>
-                        <button class="btnUpdate btn btn-outline-primary btn-sm">수정</button>
+                        <button class="btnDelete btn btn-outline-danger btn-sm" data-id="${comment.id}">삭제</button>
+                        <button class="btnUpdate btn btn-outline-primary btn-sm" data-id="${comment.id}">수정</button>
                     </div>
                 </div>
             </div>
@@ -122,6 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
             divComments.innerHTML += htmlStr;
         }
         
+        // 댓글 [삭제], [수정] 버튼들의 이벤트 리스너는 버튼들이 생겨난 이후에 등록!!
+        // 모든 button.btnDelete 버튼들을 찾아서 클릭 이벤트 리스너를 등록.
+        const btnDeletes = document.querySelectorAll('button.btnDelete');
+        btnDeletes.forEach((btn) => {
+            btn.addEventListener('click', deleteComment);
+        });
+        
+    }
+    
+    function deleteComment(event) {
+        console.log(event);
+        console.log(event.target);
     }
 
 });
