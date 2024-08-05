@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.springboot5.domain.Comment;
 import com.itwill.springboot5.domain.Post;
 import com.itwill.springboot5.dto.CommentRegisterDto;
+import com.itwill.springboot5.dto.CommentUpdateDto;
 import com.itwill.springboot5.repository.CommentRepository;
 import com.itwill.springboot5.repository.PostRepository;
 
@@ -65,6 +66,21 @@ public class CommentService {
         log.info("delete(id={})", id);
         
         commentRepo.deleteById(id);
+    }
+    
+    @Transactional
+    //-> 엔터티를 findById 등의 메서드로 검색한 후, 엔터티가 변경되면 자동으로 update 쿼리가 실행됨.
+    //-> JpaRepository<T, ID>.save(entity) 메서드를 명시적으로 호출할 필요가 없음. 
+    public void update(CommentUpdateDto dto) {
+        log.info("update(dto={})", dto);
+        
+        // 아이디(PK)로 엔터티를 검색:
+        Comment entity = commentRepo.findById(dto.getId()).orElseThrow();
+        
+        // 검색된 엔터티의 필드를 업데이트:
+        entity.update(dto.getCtext());
+        
+        // commentRepo.save(entity)를 명시적으로 호출할 필요 없음.
     }
     
 }

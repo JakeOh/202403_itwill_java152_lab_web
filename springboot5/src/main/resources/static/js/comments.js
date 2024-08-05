@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         axios.put(uri, data)
             .then((response) => {
                 console.log(response);
-                // TODO
+                alert(`댓글 #${id} 업데이트 성공!`);
+                getAllComments(0); // 댓글 목록 갱신
             })
             .catch((error) => console.log(error));
     }
