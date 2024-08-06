@@ -2,6 +2,7 @@ package com.itwill.springboot5.web;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class CommentController {
 
     private final CommentService commentSvc;
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<Comment> registerComment(@RequestBody CommentRegisterDto dto) {
         log.info("registgerComment(dto={})", dto);
@@ -39,6 +41,7 @@ public class CommentController {
         return ResponseEntity.ok(entity);
     }
     
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/all/{postId}")
     public ResponseEntity<Page<Comment>> getCommentList(
             @PathVariable(name = "postId") Long postId,
@@ -50,6 +53,7 @@ public class CommentController {
         return ResponseEntity.ok(data);
     }
     
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteComment(@PathVariable Long id) {
         log.info("deleteComment(id={})", id);
@@ -59,6 +63,7 @@ public class CommentController {
         return ResponseEntity.ok(id); // 삭제한 댓글 아이디를 응답으로 보냄.
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/{id}")
     public ResponseEntity<Long> updateComment(@PathVariable Long id,
             @RequestBody CommentUpdateDto dto) {

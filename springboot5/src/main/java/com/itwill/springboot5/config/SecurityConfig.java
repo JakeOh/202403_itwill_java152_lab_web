@@ -3,6 +3,7 @@ package com.itwill.springboot5.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 //-> 스프링 컨테이너에서 생성하고 관리하는 설정 컴포넌트.
 //-> 스프링 컨테이너에서 필요한 곳에 의존성 주입을 해줌.
+@EnableMethodSecurity
+//-> 컨트롤러 메서드에서 인증(로그인), 권한 설정을 하기 위해서.
 public class SecurityConfig {
     
     // Spring Security 5 버전부터 비밀번호는 반드시 암호화를 해야만 함.
@@ -77,7 +80,8 @@ public class SecurityConfig {
         //    -> 단점: 새로운 요청 경로가 생길 때마다 설정 구성 코드를 수정해야 함.
         // 2. 컨트롤러 메서드에서 애너테이션으로 설정.
         //    (1) SecurityConfig 빈에 @EnableMethodSecurity 애너테이션을 설정.
-        //    (2) 각각이 컨트롤러 메서드에서 @PreAuthorize 또는 @PostAuthorize 애너테이션을 설정.
+        //    (2) 각각의 컨트롤러 메서드에서 @PreAuthorize 또는 @PostAuthorize 애너테이션을 설정.
+        /*
         http.authorizeHttpRequests((auth) -> 
             // 모든 요청 주소에 대해서 (role에 상관없이) 아이디/비밀번호 인증을 하는 경우:
             // auth.anyRequest().authenticated()
@@ -88,11 +92,12 @@ public class SecurityConfig {
             // 로그인이 필요한 페이지와 그렇지 않은 페이지를 구분해서 설정 구성:
             auth
             .requestMatchers("/post/create", "/post/details", "/post/modify", 
-                    "/post/delete", "/post/update", "/api/comment/*")
+                    "/post/delete", "/post/update", "/api/comment/**")
             .hasRole("USER")
             .anyRequest()
             .permitAll()
         );
+        */
         
         return http.build(); // DefaultSecurityFilterChain 객체를 생성해서 리턴.
     }
