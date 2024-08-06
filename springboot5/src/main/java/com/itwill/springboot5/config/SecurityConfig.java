@@ -2,12 +2,15 @@ package com.itwill.springboot5.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 //-> 스프링 컨테이너에서 생성하고 관리하는 설정 컴포넌트.
@@ -55,5 +58,29 @@ public class SecurityConfig {
     // - 로그인 페이지(뷰), 로그아웃 페이지 설정.
     // - 페이지 접근 권한(ADMIN, USER) 설정.
     // - 인증 설정(로그인 없이 접근 가능한 페이지 vs 로그인해야만 접근 가능한 페이지)
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // 시큐리티 관련 설정들을 구성.
+        
+        // CSRF(Cross Site Request Forgery) 기능을 비활성화:
+        // CSRF 기능을 활성화한 경우에는,
+        // Ajax POST/PUT/DELETE 요청에서 csrf 토큰을 서버로 전송하지 않으면 HTTP 403 에러가 발생함.
+        http.csrf((csrf) -> csrf.disable());
+        
+        // 로그인 페이지(폼) 설정 - 스프링 시큐리티에서 제공하는 기본 HTML 페이지를 사용.
+        http.formLogin(Customizer.withDefaults());
+        // TODO: Custom 로그인 HTML 페이지를 사용.
+        
+        // 페이지 접근 권한, 인증 구성
+        http.authorizeHttpRequests((auth) -> 
+                // 모든 요청 주소에 대해서 (role에 상관없이) 아이디/비밀번호 인증을 하는 경우:
+                // auth.anyRequest().authenticated()
+        
+                // 모든 요청 주소에 대해서 "USER" 권한을 가진 아이디/비밀번호 인증을 하는 경우:
+                auth.anyRequest().hasRole("USER")
+        );
+        
+        return http.build(); // DefaultSecurityFilterChain 객체를 생성해서 리턴.
+    }
     
 }
