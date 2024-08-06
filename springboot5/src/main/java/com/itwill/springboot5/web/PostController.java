@@ -39,7 +39,7 @@ public class PostController {
         model.addAttribute("baseUrl", "/post/list");
     }
     
-    // @PreAuthorize("authenticated()") //-> role에 상관없이 아이디/비밀번호로만 인증.
+    // @PreAuthorize("isAuthenticated()") //-> role에 상관없이 아이디/비밀번호로만 인증.
     @PreAuthorize("hasRole('USER')") //-> role이 일치하는 아이디/비밀번호 인증.
     @GetMapping("/create")
     public void create() {
