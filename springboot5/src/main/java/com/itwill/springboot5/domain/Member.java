@@ -64,6 +64,11 @@ public class Member extends BaseTimeEntity {
         return this;
     }
     
+    public Member removeRole(MemberRole role) {
+        roles.remove(role); // Set<>에서 원소(role)를 삭제.
+        return this;
+    }
+    
     public Member clearRoles() {
         roles.clear(); // Set<>의 모든 원소를 지움.
         return this;
