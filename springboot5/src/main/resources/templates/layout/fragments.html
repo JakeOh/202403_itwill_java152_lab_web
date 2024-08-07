@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head>
         <th:block th:fragment="documentHeader">
             <meta charset="utf-8" />
@@ -37,9 +38,23 @@
                                 <a class="nav-link"
                                     th:href="@{/post/create}">새 포스트</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">TODO</a>
-                            </li>
+                            <th:block sec:authorize="isAnonymous()"> <!-- 로그인 안 된 상태 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/member/signin}">로그인</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+                                </li>
+                            </th:block>
+                            <th:block sec:authorize="isAuthenticated()"> <!-- 로그인 된 상태 -->
+                                <li class="nav-item">
+                                    <!-- spring security에서 로그아웃 기능이 구현된 요청 주소 -->
+                                    <a class="nav-link" th:href="@{/logout}">
+                                        <span class="text-secondary" sec:authentication="name"></span>
+                                        <span class="mx-1 text-primary">로그아웃</span>
+                                    </a>
+                                </li>
+                            </th:block>
                         </ul>
                     </div>
                 </div>
