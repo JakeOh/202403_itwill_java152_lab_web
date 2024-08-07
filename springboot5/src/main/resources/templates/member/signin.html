@@ -8,7 +8,7 @@
         
         <main class="mt-2">
             <div class="card card-body">
-                <form method="post" th:action="@{/member/signin}">
+                <form method="post">
                     <div class="mt-2 text-danger" th:if="${param.error}">
                         아이디와 비밀번호를 확인하세요.
                     </div>
