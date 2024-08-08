@@ -41,6 +41,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "MEMBERS")
 public class Member extends BaseTimeEntity implements UserDetails {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
