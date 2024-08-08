@@ -1,9 +1,14 @@
 package com.itwill.springboot5.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.NaturalId;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -35,7 +40,7 @@ import lombok.ToString;
 // callSuper 속성: superclass의 equals(), hashCode() 메서드를 사용할 것인 지 여부.
 @Entity
 @Table(name = "MEMBERS")
-public class Member extends BaseTimeEntity {
+public class Member extends BaseTimeEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +77,21 @@ public class Member extends BaseTimeEntity {
     public Member clearRoles() {
         roles.clear(); // Set<>의 모든 원소를 지움.
         return this;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        for (MemberRole r : roles) {
+//            GrantedAuthority auth = new SimpleGrantedAuthority(r.getAuthority());
+//            authorities.add(auth);
+//        }
+        
+        List<SimpleGrantedAuthority> authorities = roles.stream()
+                .map((r) -> new SimpleGrantedAuthority(r.getAuthority()))
+                .toList();
+        
+        return authorities;
     }
     
 }
