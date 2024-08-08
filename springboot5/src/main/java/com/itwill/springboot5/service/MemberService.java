@@ -1,5 +1,7 @@
 package com.itwill.springboot5.service;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,7 +41,15 @@ public class MemberService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // DB 테이블(members)에 username이 일치하는 사용자가 있으면 UserDetails 타입의
         // 객체를 리턴하고, 그렇지 않으면 UsernameNotFoundException을 던짐.
-        return null;
+        
+        log.info("loadUserByUsername(username={})", username);
+        
+        Optional<Member> entity = memberRepo.findByUsername(username);
+        if (entity.isPresent()) {
+            return entity.get();
+        } else {
+            throw new UsernameNotFoundException(username + ": 일치하는 사용자 정보 없음.");
+        }
     }
     
 }
