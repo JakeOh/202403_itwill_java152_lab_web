@@ -51,12 +51,21 @@ public class MemberRepositoryTest {
         log.info("save 호출 후 = {}, {}", m, m.getRoles());
     }
 
-    @Test @Transactional
+//    @Test @Transactional
     public void testFindAll() {
         List<Member> list = memberRepo.findAll();
         //-> members 테이블과 member_roles 테이블에서 정보를 취합.
         
         list.forEach((member) -> log.info("{}, {}", member, member.getRoles()));
+    }
+    
+    @Test
+    public void testFindByUsername() {
+        Member test1 = memberRepo.findByUsername("test1").get();
+        log.info("{}, {}", test1, test1.getRoles());
+        
+        Member test2 = memberRepo.findByUsername("test2").get();
+        log.info("{}, {}", test2, test2.getRoles());
     }
     
 }
