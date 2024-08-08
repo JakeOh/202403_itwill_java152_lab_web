@@ -42,7 +42,8 @@
                         </div>
                     </form>
                     
-                    <div class="mt-2">
+                    <!-- 포스트 작성자 아이디와 로그인 사용자 아이디가 같으면 버튼을 보여줌. -->
+                    <div class="mt-2" th:if="*{author eq #authentication.name}">
                         <a class="btn btn-success form-control"
                             th:href="@{/post/modify(id=*{id})}">수정하기</a>
                     </div>
@@ -63,8 +64,8 @@
                         <textarea class="form-control" id="commentText" rows="3"
                             placeholder="댓글 내용 작성"></textarea>
                         
-                        <!-- TODO: 로그인 사용자 이름으로 설정 -->
-                        <input class="d-none" id="commentWriter" value="admin" readonly />
+                        <!-- 댓글 작성자를 로그인 사용자 이름으로 설정 -->
+                        <input class="d-none" id="commentWriter" th:value="${#authentication.name}" readonly />
                     </div>
                     <div class="col-2">
                         <button class="btn btn-outline-success form-control"

@@ -20,10 +20,10 @@
                             <textarea class="form-control" id="content" rows="5"
                                 name="content" required></textarea>
                         </div>
-                        <div class="mt-2">
+                        <div class="d-none">
                             <label class="form-label" for="author">작성자</label>
                             <input type="text" class="form-control" id="author"
-                                name="author" required />
+                                name="author" th:value="${#authentication.name}" readonly />
                         </div>
                         <div class="mt-2">
                             <input type="submit" class="form-control btn btn-success"

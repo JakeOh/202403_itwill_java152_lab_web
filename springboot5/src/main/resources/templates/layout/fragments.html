@@ -50,7 +50,8 @@
                                 <li class="nav-item">
                                     <!-- spring security에서 로그아웃 기능이 구현된 요청 주소 -->
                                     <a class="nav-link" th:href="@{/logout}">
-                                        <span class="text-secondary" sec:authentication="name"></span>
+                                        <span class="text-secondary" id="authenticatedUser" 
+                                            sec:authentication="name"></span>
                                         <span class="mx-1 text-primary">로그아웃</span>
                                     </a>
                                 </li>
