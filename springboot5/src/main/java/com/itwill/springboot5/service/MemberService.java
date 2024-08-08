@@ -1,5 +1,6 @@
 package com.itwill.springboot5.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,13 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class MemberService {
     
+    private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepo;
 
     @Transactional
     public Member create(MemberSignUpDto dto) {
         log.info("create(dto={})", dto);
         
-        Member member = memberRepo.save(dto.toEntity().addRole(MemberRole.USER));
+        Member member = memberRepo.save(dto.toEntity(passwordEncoder).addRole(MemberRole.USER));
         // save() -> (1) insert into members, (2) insert into member_roles
         
         return member;
